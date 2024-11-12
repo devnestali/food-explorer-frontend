@@ -1,9 +1,22 @@
 import { Container } from "./styles"
+import { Input } from "../../components/Input"
+
 
 export function SignIn() {
     return (
         <Container>
-            <h1>Hello World</h1>
+            <Input 
+                title="Seu nome"
+                placeholder="Digite seu nome..."
+            />
+            <Input 
+                title="Seu nome"
+                placeholder="Digite seu nome..."
+            />
+            <Input 
+                title="Seu nome"
+                placeholder="Digite seu nome..."
+            />
         </Container>
     )
 }
