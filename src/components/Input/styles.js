@@ -11,6 +11,7 @@ export const Container = styled.div`
 
         > label {
             font-size: 1.6rem;
+            color: ${({ theme }) => theme.COLORS.LIGHT_400};
         }
 
         > input {

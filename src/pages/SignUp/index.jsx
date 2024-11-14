@@ -3,7 +3,7 @@ import { Input } from "../../components/Input"
 import { Button } from "../../components/Button"
 import { ButtonText } from "../../components/ButtonText"
 
-export function SignIn() {
+export function SignUp() {
     return (
         <Container>
                 <div>
@@ -11,7 +11,11 @@ export function SignIn() {
                     <h1>food explorer</h1>
                 </div>
                 <Form>
-                    <h1>Faça login</h1>
+                    <h1>Crie sua conta</h1>
+                    <Input 
+                        title="Seu nome"
+                        placeholder="Exemplo: Maria da Silva"
+                    />
                     <Input 
                         title="Email"
                         placeholder="Exemplo: exemplo@exemplo.com.br"
@@ -20,8 +24,8 @@ export function SignIn() {
                         title="Senha"
                         placeholder="No mínimo 6 caracteres"
                     />
-                    <Button title="Entrar" />
-                    <ButtonText title="Criar uma conta" />
+                    <Button title="Criar conta" />
+                    <ButtonText title="Já tenho uma conta" />
                 </Form>
         </Container>
     )
