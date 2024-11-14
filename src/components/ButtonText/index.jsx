@@ -3,12 +3,10 @@ import { Container } from "./styles";
 export function ButtonText({ icon: Icon, title, toBack, ...rest }) {
     return (
         <Container 
+        data-toback={toBack}
         {...rest}
         >
-            <a 
-                href=""
-                data-toback={toBack}
-            >
+            <a href="">
                 {Icon && <Icon />}
                 {title}
             </a>

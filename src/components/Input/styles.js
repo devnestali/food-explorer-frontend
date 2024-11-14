@@ -35,6 +35,10 @@ export const Container = styled.div`
             border-radius: 0.8rem;
             color: ${({ theme }) => theme.COLORS.LIGHT_100};
         }
+
+        > input::placeholder {
+            color: ${({ theme }) => theme.COLORS.LIGHT_500};
+        }
         
         > input:focus-within {
             border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_100};

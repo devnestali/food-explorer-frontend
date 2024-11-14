@@ -22,7 +22,7 @@ export default createGlobalStyle`
         --webkit-font-smoothing: antialiased;
     }
 
-    input, textarea {
+    input, textarea, p {
         font-family: 'Roboto', serif;
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
         --webkit-font-smoothing: antialiased;

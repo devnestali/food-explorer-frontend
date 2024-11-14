@@ -23,10 +23,4 @@ export const Container = styled.button`
     &:disabled {
         background-color: ${({ theme }) => theme.COLORS.TOMATO_400};
     }
-
-    > svg {
-        height: 2.2rem;
-        width: 2.2rem;
-        margin-right: 1rem;
-    }
 `;

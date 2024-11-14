@@ -7,16 +7,11 @@ export const Container = styled.div`
     
     padding: 3.2rem;
     
-    a {
-        color: ${({ theme }) => theme.COLORS.LIGHT_100};
-        font-size: 1.4rem;
-        line-height: 2.4rem;
-
-        display: inline-flex;
-        align-items: center;
-        gap: 0.8rem;
-
-        &[data-toback="true"] {
+    &[data-toback="true"] {
+        width: auto;
+        padding: 0;
+        
+        a {
             font-weight: bold;
             font-size: 2.4rem;
 
@@ -25,6 +20,16 @@ export const Container = styled.div`
                 height: 3.2rem;
             }
         }
+    }
+    
+    a {
+        color: ${({ theme }) => theme.COLORS.LIGHT_100};
+        font-size: 1.4rem;
+        line-height: 2.4rem;
+
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
     }
 
     svg {
