@@ -13,7 +13,7 @@ export function Header() {
         <Container>
             <div className="logo">
                 <img src="/logo.svg" alt="logo" />
-                <h2>food explorer</h2>
+                <a>food explorer</a>
             </div>
 
             <InputSearch>

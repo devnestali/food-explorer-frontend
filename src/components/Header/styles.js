@@ -16,7 +16,13 @@ export const Container = styled.div`
 
     .logo {
         display: inline-flex;
+        align-items: center;
         gap: 1rem;
+
+        a {
+            font-size: 2.4rem;
+            font-weight: bold;
+        }
     }
 `;
 
