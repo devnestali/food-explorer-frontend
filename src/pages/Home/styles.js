@@ -14,8 +14,6 @@ export const Container = styled.div`
         grid-area: container;
         width: 100%;
 
-        overflow-y: auto;
-
         > .wrapper {
             height: 100%;
 
@@ -24,6 +22,10 @@ export const Container = styled.div`
 
             display: flex;
             flex-direction: column;
+
+            > h2 {
+                margin: 6.2rem 0 2rem;
+            }
         }
     }
 `;
@@ -42,8 +44,8 @@ export const MainHeader = styled.div`
     
     > img {
         position: absolute;
-        top: -56%;
-        left: -5%;
+        top: -14.6rem;
+        left: -7rem;
     }
 
     > .mainHeaderTitle {
@@ -55,5 +57,55 @@ export const MainHeader = styled.div`
             line-height: 140%;
             letter-spacing: .1rem;
         }
+    }
+`;
+
+export const Meals = styled.div`
+    position: relative;
+    display: flex;
+    gap: 2.7rem;
+
+    overflow: hidden;
+    border-radius: 1rem;
+
+    > a {
+        position: absolute;
+        top: 45%;
+
+        color: ${({ theme }) => theme.COLORS.LIGHT_100};
+
+        z-index: 3;
+
+        font-size: 4rem;
+    }
+
+    > a:nth-of-type(1) {
+        right: 0;
+    }
+
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+
+        width: 22.4rem;
+        height: 100%;
+        z-index: 2;
+
+        background: linear-gradient(
+        to left,
+        ${({ theme }) => theme.COLORS.DARK_400},
+        rgba(0, 10, 15, 0) 100%
+        );
+    }
+
+    &::before {
+        left: 0;
+        transform: scaleX(-1);
+    }
+
+    &::after {
+        right: 0;
     }
 `;

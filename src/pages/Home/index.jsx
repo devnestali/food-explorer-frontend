@@ -1,9 +1,12 @@
-import { Container, MainHeader } from "./styles";
+import { Container, MainHeader, Meals } from "./styles";
 
 import { Header } from "../../components/Header";
 import { Wrapper } from "../../components/Wrapper";
+import { Meal } from "../../components/Meal";
 
-import ButtonImage from '../../assets/mainImage.png';
+import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
+
+import mainImage from '../../assets/mainImage.png';
 
 export function Home() {
     return (
@@ -13,13 +16,22 @@ export function Home() {
             <main>
                 <Wrapper>
                     <MainHeader>
-                        <img src={ButtonImage} alt="Biscoitos" />
+                        <img src={mainImage} alt="Biscoitos" />
 
                         <div className="mainHeaderTitle">
                             <h2>Sabores inigualáveis</h2>
                             <p>Sinta o cuidado do preparo com ingredientes selecionados</p>
                         </div>
-                    </MainHeader>
+                    </MainHeader> 
+                    <h2>Refeições</h2>
+                    <Meals>
+                        <a href="#"><LuChevronRight /></a>
+                        <Meal />
+                        <Meal />
+                        <Meal />
+                        <Meal />
+                        <a href="#"><LuChevronLeft /></a>
+                    </Meals>
                 </Wrapper>
             </main>
         </Container>
