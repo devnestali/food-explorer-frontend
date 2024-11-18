@@ -16,6 +16,10 @@ export const Container = styled.button`
     line-height: 2.4rem;
     background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
 
+    &[data-tomeal="true"] {
+        margin-top: 0;
+    }
+
     &[data-todelete="true"] {
         background-color: ${({ theme }) => theme.COLORS.DARK_800};
     }
