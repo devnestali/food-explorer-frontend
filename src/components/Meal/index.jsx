@@ -1,4 +1,4 @@
-import { Container } from "./styles";
+import { Container, MealTitle, Amount, Buttons } from "./styles";
 
 import mealImage from "../../assets/mealphoto.svg";
 
@@ -12,20 +12,20 @@ export function Meal({ data }) {
         <Container className="meal">
             <a href="#"><LuHeart /></a>
             <img src={mealImage} alt="" />
-            <div className="mealTitle">
+            <MealTitle>
                 <h2>Salada Ravanello</h2>
                 <LuChevronRight />
-            </div>
+            </MealTitle>
             <p>Presunto de parma e rúcula em um pão com fermentação natural.</p>
             <span>R$ 25,97</span>
-            <div className="buttons">
-                <div className="amount">
+            <Buttons>
+                <Amount>
                     <button><LuMinus /></button>
                     <span>01</span>
                     <button><LuPlus /></button>
-                </div>
+                </Amount>
                 <Button title="incluir" toMeal />
-            </div>
+            </Buttons>
         </Container>
     )
 }

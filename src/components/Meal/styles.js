@@ -33,27 +33,6 @@ export const Container = styled.div`
         margin-bottom: 1.5rem;
     }
 
-    > .mealTitle {
-        display: flex;
-        gap: 1rem;
-        
-        line-height: 140%;
-        
-        > h2 {
-            font-size: 2.4rem;
-            font-weight: bold;
-
-            margin-bottom: 1.5rem;
-        }
-
-        > svg {
-            width: 2.2rem;
-            height: 2.2rem;
-
-            stroke-width: 4;
-        }
-    }
-
     > p {
         width: 25.6rem;
         height: 4.4rem;
@@ -70,34 +49,55 @@ export const Container = styled.div`
         line-height: 160%;
         color: ${({ theme }) => theme.COLORS.CAKE_200};
     }
+`;
 
-    > .buttons {
-        display: flex;
-        gap: 1.5rem;
+export const MealTitle = styled.div`
+    display: flex;
+    gap: 1rem;
+    
+    line-height: 140%;
+    
+    > h2 {
+        font-size: 2.4rem;
+        font-weight: bold;
 
-        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
 
-        > .amount {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+    > svg {
+        width: 2.2rem;
+        height: 2.2rem;
 
-            > button {
-                background: transparent;
+        stroke-width: 4;
+    }
+`;
 
-                border: none;
-                outline: none;
-                
-                > svg {
-                    width: 2.4rem;
-                    height: 2.4rem;
-                }
-            }
+export const Buttons = styled.div`
+    display: flex;
+    gap: 1.5rem;
 
-            > span {
-                font-size: 2rem;
-            }
+    margin-top: 1.5rem;
 
+`;
+
+export const Amount = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    > button {
+        background: transparent;
+
+        border: none;
+        outline: none;
+        
+        > svg {
+            width: 2.4rem;
+            height: 2.4rem;
         }
+    }
+
+    > span {
+        font-size: 2rem;
     }
 `;
