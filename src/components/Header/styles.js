@@ -11,6 +11,9 @@ export const Container = styled.div`
     gap: 3.2rem;
 
     padding: 2.8rem;
+    
+    position: fixed;
+    z-index: 4;
 
     background-color: ${({ theme }) => theme.COLORS.DARK_600};
 
