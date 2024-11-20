@@ -8,6 +8,7 @@ export const Container = styled.div`
     padding: 3.2rem;
     
     &[data-toback="true"] {
+        text-align: left;
         width: auto;
         padding: 0;
         
