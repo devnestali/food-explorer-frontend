@@ -8,12 +8,15 @@ import { ButtonToOrder } from "../ButtonToOrder";
 import { ButtonText } from "../ButtonText";
 
 
-export function Header() {
+export function Header({ toAdmin }) {
     return (
         <Container>
             <div className="logo">
                 <img src="/logo.svg" alt="logo" />
-                <a>food explorer</a>
+                <div className="text-container">
+                    <a>food explorer</a>
+                    {toAdmin && <p>admin</p>}
+                </div>
             </div>
 
             <InputSearch>
@@ -21,7 +24,7 @@ export function Header() {
                 <input type="text" placeholder="Busque por pratos ou ingredientes"/>
             </InputSearch>
 
-            <ButtonToOrder icon={LuClipboardList} title="Pedidos (0)"/>
+            <ButtonToOrder icon={!toAdmin && LuClipboardList} title={toAdmin ? "Novo Prato" : "Pedidos (0)"}/>
             <ButtonText icon={LuLogOut} toBack />
         </Container>
     )

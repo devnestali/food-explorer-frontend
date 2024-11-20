@@ -22,9 +22,23 @@ export const Container = styled.div`
         align-items: center;
         gap: 1rem;
 
-        a {
-            font-size: 2.4rem;
-            font-weight: bold;
+        .text-container {
+            position: relative;
+            text-align: end;
+            
+            a {
+                font-size: 2.4rem;
+                font-weight: bold;
+            }
+
+            p {
+                position: absolute;
+                top: 90%;
+                right: 0;
+
+                font-size: 1.2rem;
+                color: ${({ theme }) => theme.COLORS.CAKE_200};
+            }
         }
     }
 `;

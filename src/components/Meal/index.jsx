@@ -1,3 +1,5 @@
+import { motion } from "motion/react";
+
 import { Container, MealTitle, Amount, Buttons } from "./styles";
 
 import mealImage from "../../assets/mealphoto.svg";
@@ -10,7 +12,13 @@ import { Button } from "../Button";
 export function Meal({ data }) {
     return (
         <Container className="meal">
-            <a href="#"><LuHeart /></a>
+            <motion.div
+                className="favorite"
+                whileHover={{ scale: 1.2 }} 
+                whileTap={{ scale: 0.8 }}
+            >
+                <a href="#"><LuHeart /></a>
+            </motion.div>
             <img src={mealImage} alt="" />
             <MealTitle>
                 <h2>Salada Ravanello</h2>

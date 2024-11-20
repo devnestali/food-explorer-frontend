@@ -16,13 +16,17 @@ export const Container = styled.div`
 
     position: relative;
 
-    > a {
+    > .favorite {
         position: absolute;
         top: 4%;
         left: 87%;
 
-        font-size: 2.4rem;
-        color: ${({ theme }) => theme.COLORS.LIGHT_300}
+        z-index: 3;
+
+        > a {
+            font-size: 2.4rem;
+            color: ${({ theme }) => theme.COLORS.LIGHT_300};
+        }
     }
     
 
