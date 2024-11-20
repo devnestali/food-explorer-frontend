@@ -41,4 +41,18 @@ export default createGlobalStyle`
         text-decoration: none;
     }
 
+    ::-webkit-scrollbar {
+        width: .8rem;
+        background-color: ${({ theme }) => theme.COLORS.DARK_600};
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: ${({ theme }) => theme.COLORS.DARK_100};
+        border-radius: 2rem;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+
 `;
