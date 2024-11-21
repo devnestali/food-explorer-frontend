@@ -23,9 +23,14 @@ export const Container = styled.div`
 
         z-index: 3;
 
-        > a {
+        > button {
             font-size: 2.4rem;
             color: ${({ theme }) => theme.COLORS.LIGHT_300};
+
+            background: transparent;
+            border: none;
+            outline: none;
+
         }
     }
     
