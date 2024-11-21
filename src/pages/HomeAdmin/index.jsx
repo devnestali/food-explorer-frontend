@@ -27,31 +27,33 @@ export function HomeAdmin() {
                     <h2>Refeições</h2>
                     <Meals>
                         <a href=""><LuChevronRight /></a>
-                        <Meal />
-                        <Meal />
-                        <Meal />
-                        <Meal />
-                        <Meal />
+                        <Meal toAdmin />
+                        <Meal toAdmin />
+                        <Meal toAdmin />
+                        <Meal toAdmin />
+                        <Meal toAdmin />
                         <a href=""><LuChevronLeft /></a>
                     </Meals>
                     
                     <h2>Sobremesas</h2>
                     <Meals>
                         <a href="#"><LuChevronRight /></a>
-                        <Meal />
-                        <Meal />
-                        <Meal />
-                        <Meal />
+                        <Meal toAdmin />
+                        <Meal toAdmin />
+                        <Meal toAdmin />
+                        <Meal toAdmin />
+                        <Meal toAdmin />
                         <a href="#"><LuChevronLeft /></a>
                     </Meals>
                     
                     <h2>Bebidas</h2>
                     <Meals>
                         <a href="#"><LuChevronRight /></a>
-                        <Meal />
-                        <Meal />
-                        <Meal />
-                        <Meal />
+                        <Meal toAdmin />
+                        <Meal toAdmin />
+                        <Meal toAdmin />
+                        <Meal toAdmin />
+                        <Meal toAdmin />
                         <a href="#"><LuChevronLeft /></a>
                     </Meals>
 
