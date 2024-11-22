@@ -53,11 +53,15 @@ export function AddAdmin() {
                         </HeaderInputs>
 
                         <BodyInputs>
-                            <label htmlFor="ingredient">Ingredient</label>
-                            <div className="ingredients">
-                                <IngredientItem value="Arroz"/>
-                                <IngredientItem placeholder="Adicionar" isNew />
+                            <div className="containerBody">
+                                <label htmlFor="ingredients">Ingredientes</label>
+                                <div className="ingredients">
+                                    <IngredientItem value="Arroz"/>
+                                    <IngredientItem placeholder="Adicionar" isNew />
+                                </div>
                             </div>
+
+                            <Input title="Preço" placeholder="R$ 00,00" toAdmin />
                         </BodyInputs>
                     </Form>
                 </Wrapper>

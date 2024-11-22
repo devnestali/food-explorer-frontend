@@ -45,7 +45,8 @@ export const Form = styled.form`
 
 export const FieldImageInput = styled.div`
     > p {
-        margin-bottom: 1.5rem;
+        font-family: 'Poppins', serif;
+        margin-bottom: 1rem;
         color: ${({ theme }) => theme.COLORS.LIGHT_400};
         cursor: default;
     }
@@ -145,18 +146,37 @@ export const FieldTypeInput = styled.div`
 
 export const BodyInputs = styled.div`
     display: flex;
-    flex-direction: column;
-    gap: 1.6rem;
-
-    .ingredients {
-        height: 4.8rem;
+    justify-content: center;
+    gap: 3.2rem;
+    
+    .containerBody {
         width: 100%;
-
+        
         display: flex;
+        flex-direction: column;
+        gap: 1.6rem;
 
-        background-color: ${({ theme }) => theme.COLORS.DARK_800};
-        border-radius: 0.8rem;
+        > label {
+            font-size: 1.6rem;
+            color: ${({ theme }) => theme.COLORS.LIGHT_400};
+        }
+    
+        .ingredients {
+            height: 4.8rem;
+            width: 100%;
+            
+    
+            display: flex;
+    
+            background-color: ${({ theme }) => theme.COLORS.DARK_800};
+            border-radius: 0.8rem;
+        }
     }
+
+    .inputComponent {
+        margin-top: 0;
+    }
+
 
 
 `;
