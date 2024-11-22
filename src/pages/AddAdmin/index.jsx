@@ -4,9 +4,11 @@ import { Header } from "../../components/Header"
 import { Wrapper } from "../../components/Wrapper"
 import { ButtonText } from "../../components/ButtonText"
 import { Input } from "../../components/Input"
+import { Button } from "../../components/Button"
 
 import { LuArrowLeft, LuArrowUpFromLine, LuChevronDown } from "react-icons/lu";
 import { IngredientItem } from "../../components/IngredientItem";
+import { Textarea } from "../../components/Textarea";
 
 export function AddAdmin() {
     const options = [
@@ -63,6 +65,12 @@ export function AddAdmin() {
 
                             <Input title="Preço" placeholder="R$ 00,00" toAdmin />
                         </BodyInputs>
+                        
+                        <Textarea placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" />
+
+                        <div className="buttons">
+                            <Button title="Salvar alterações" disabled />
+                        </div>
                     </Form>
                 </Wrapper>
             </main>

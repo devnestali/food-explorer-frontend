@@ -41,6 +41,13 @@ export const Form = styled.form`
     display: flex;
     flex-direction: column;
     gap: 1.6rem;
+
+    > .buttons {
+        width: 17.2rem;
+
+        display: inline-flex;
+        align-self: flex-end;
+    }
 `;
 
 export const FieldImageInput = styled.div`
