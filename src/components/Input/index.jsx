@@ -1,11 +1,12 @@
 import { Container } from "./styles"
 
-export function Input({ title, type="text", ...rest}) {
+export function Input({ title, type="text", toAdmin , ...rest}) {
     return (
-        <Container>
+        <Container className="inputComponent">
             <label>{title}</label>
             <input 
                 type={type}
+                data-toadmin={toAdmin}
                 {...rest}
             />
         </Container>

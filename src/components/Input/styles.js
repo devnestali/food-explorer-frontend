@@ -7,7 +7,7 @@ export const Container = styled.div`
 
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 1rem;
 
         > label {
             font-size: 1.6rem;
@@ -20,7 +20,11 @@ export const Container = styled.div`
             height: 4.8rem;
             width: 100%;
             
-            background-color: ${({ theme }) => theme.COLORS.DARK_900};
+            &[data-toadmin="true"] {
+                background-color: ${({ theme }) => theme.COLORS.DARK_800};
+            }
+
+            background-color: ${({ theme}) => theme.COLORS.DARK_900};
             
             display: flex;
             align-items: center;
