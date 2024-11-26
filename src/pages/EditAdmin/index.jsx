@@ -10,7 +10,7 @@ import { LuArrowLeft, LuArrowUpFromLine, LuChevronDown } from "react-icons/lu";
 import { IngredientItem } from "../../components/IngredientItem";
 import { Textarea } from "../../components/Textarea";
 
-export function AddAdmin() {
+export function EditAdmin() {
     const options = [
         { id: 1, label: "Refeição"},
         { id: 2, label: "Sobremesa"},
@@ -39,7 +39,7 @@ export function AddAdmin() {
                                 </div>
                             </FieldImageInput>
                             
-                            <Input title="Nome" placeholder="Ex.: Salada Ceasar" toAdmin />
+                            <Input title="Nome" placeholder="Salada Ceasar" toAdmin />
                             
                             <FieldTypeInput>
                                 <label htmlFor="typeOfMeal">Categoria</label>
@@ -66,9 +66,10 @@ export function AddAdmin() {
                             <Input title="Preço" placeholder="R$ 00,00" toAdmin />
                         </BodyInputs>
                         
-                        <Textarea placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" />
+                        <Textarea placeholder="A Salada César é uma opção refrescante para o verão." />
 
                         <div className="buttons">
+                            <Button title="Excluir prato" toDelete />
                             <Button title="Salvar alterações" disabled />
                         </div>
                     </Form>
