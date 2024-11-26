@@ -9,7 +9,7 @@ import { AdminRoutes } from "./admin.routes";
 export function Routes() {
     return (
         <BrowserRouter future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
-            <UserRoutes />
+            <AuthRoutes />
         </BrowserRouter>
     )
 }

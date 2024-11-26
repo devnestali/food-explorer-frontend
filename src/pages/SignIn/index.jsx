@@ -1,9 +1,18 @@
 import { Container, Form } from "./styles"
+
 import { Input } from "../../components/Input"
 import { Button } from "../../components/Button"
 import { ButtonText } from "../../components/ButtonText"
 
+import { useNavigate } from "react-router-dom"
+
 export function SignIn() {
+    const navigate = useNavigate();
+
+    function handleClickToRegister() {
+        navigate("/register");
+    }
+    
     return (
         <Container>
                 <div>
@@ -21,7 +30,9 @@ export function SignIn() {
                         placeholder="No mínimo 6 caracteres"
                     />
                     <Button title="Entrar" />
-                    <ButtonText title="Criar uma conta" />
+                    <a onClick={handleClickToRegister} >
+                        Criar uma conta
+                    </a>
                 </Form>
         </Container>
     )

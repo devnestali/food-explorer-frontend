@@ -39,4 +39,21 @@ export const Form = styled.form`
         text-align: center;
         font-weight: 500;
     }
+
+    > a {
+        width: 100%;
+        
+        text-align: center;
+        
+        padding: 3.2rem;
+        
+        color: ${({ theme }) => theme.COLORS.LIGHT_100};
+        font-size: 1.4rem;
+        line-height: 2.4rem;
+    
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.8rem;
+    }
 `;

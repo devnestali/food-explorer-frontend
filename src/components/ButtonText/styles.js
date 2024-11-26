@@ -13,26 +13,23 @@ export const Container = styled(Link)`
         width: auto;
         padding: 0;
         
-        p {
-            font-weight: bold;
-            font-size: 2.4rem;
+        font-weight: bold;
+        font-size: 2.4rem;
 
-            svg {
-                width: 3.2rem;
-                height: 3.2rem;
-            }
+        svg {
+            width: 3.2rem;
+            height: 3.2rem;
         }
     }
     
-    p {
-        color: ${({ theme }) => theme.COLORS.LIGHT_100};
-        font-size: 1.4rem;
-        line-height: 2.4rem;
+    color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    font-size: 1.4rem;
+    line-height: 2.4rem;
 
-        display: inline-flex;
-        align-items: center;
-        gap: 0.8rem;
-    }
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
 
     svg {
         width: 2.2rem;
