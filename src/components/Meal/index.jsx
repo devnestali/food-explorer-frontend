@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 export function Meal({ data, toAdmin }) {
     const navigate = useNavigate();
 
-    function handleClickToEdit() {
+    function handleClickToMeal() {
         navigate('/dish');
     }
     
@@ -25,7 +25,7 @@ export function Meal({ data, toAdmin }) {
                 whileHover={{ scale: 1.2 }} 
                 whileTap={{ scale: 0.8 }}
             >
-                <button type="button">{toAdmin ? <LuPencil onClick={handleClickToEdit}/> : <LuHeart />}</button>
+                <button type="button">{toAdmin ? <LuPencil onClick={handleClickToMeal}/> : <LuHeart />}</button>
             </motion.div>
             <img src={mealImage} alt="" />
             <MealTitle>
@@ -41,7 +41,7 @@ export function Meal({ data, toAdmin }) {
                                 <span>01</span>
                                 <button><LuPlus /></button>
                             </Amount>
-                            <Button title="incluir" toMeal />
+                            <Button title="incluir" toMeal onClick={handleClickToMeal}/>
                         </Buttons>
             }
         </Container>

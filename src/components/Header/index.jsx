@@ -34,7 +34,7 @@ export function Header({ toAdmin }) {
 
             <ButtonToOrder icon={!toAdmin && LuClipboardList} 
                            title={toAdmin ? "Novo Prato" : "Pedidos (0)"} 
-                           onClick={toAdmin ? handleClickToAddAdmin : ""} // Ainda terá a rota para o usuário
+                           onClick={toAdmin ? handleClickToAddAdmin : ""}
             />
             <ButtonText icon={LuLogOut} toBack />
         </Container>

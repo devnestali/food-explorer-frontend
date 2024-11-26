@@ -13,7 +13,7 @@ export const Container = styled.div`
     padding: 2.8rem;
     
     position: fixed;
-    z-index: 4;
+    z-index: 100;
 
     background-color: ${({ theme }) => theme.COLORS.DARK_600};
 

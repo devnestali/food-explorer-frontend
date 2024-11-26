@@ -89,7 +89,7 @@ export const Meals = styled.div`
         position: absolute;
         top: 0;
 
-        width: 22.4rem;
+        width: 24rem;
         height: 100%;
         z-index: 2;
 

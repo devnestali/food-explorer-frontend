@@ -90,6 +90,7 @@ export const Buttons = styled.div`
             border: none;
             outline: none;
             
+            
             > svg {
                 width: 2.4rem;
                 height: 2.4rem;

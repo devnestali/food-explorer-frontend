@@ -9,8 +9,16 @@ import { LuChevronLeft, LuMinus, LuPlus } from'react-icons/lu'
 
 import MealPhoto from '../../assets/mealphoto.svg'
 import { Ingredient } from "../../components/Ingredient"
+
+import { useNavigate } from "react-router-dom"
  
 export function Dish() {
+    const navigate = useNavigate();
+
+    function handleOrder() {
+        navigate("/");
+    }
+    
     return (
         <Container>
             <Header />
@@ -40,7 +48,7 @@ export function Dish() {
                                     <span>01</span>
                                     <button><LuPlus /></button>
                                 </div>
-                                <Button title="incluir ∙ R$ 25,00" toMeal />
+                                <Button title="incluir ∙ R$ 25,00" toMeal onClick={handleOrder}/>
                             </Buttons>
                         </DetailsMeal>
                     </InfoMeal>
