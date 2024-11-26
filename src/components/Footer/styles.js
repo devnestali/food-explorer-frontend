@@ -58,5 +58,4 @@ export const Container = styled.footer`
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
     }
 
-    // consertar esse efeito depois...
 `;

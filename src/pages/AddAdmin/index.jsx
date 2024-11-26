@@ -5,6 +5,7 @@ import { Wrapper } from "../../components/Wrapper"
 import { ButtonText } from "../../components/ButtonText"
 import { Input } from "../../components/Input"
 import { Button } from "../../components/Button"
+import { Footer } from "../../components/Footer"
 
 import { LuArrowLeft, LuArrowUpFromLine, LuChevronDown } from "react-icons/lu";
 import { IngredientItem } from "../../components/IngredientItem";
@@ -73,6 +74,8 @@ export function AddAdmin() {
                         </div>
                     </Form>
                 </Wrapper>
+
+                <Footer />
             </main>
         </Container>
     )
