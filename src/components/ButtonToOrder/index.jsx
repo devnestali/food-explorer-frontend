@@ -1,8 +1,8 @@
 import { Container } from "./styles";
 
-export function ButtonToOrder({ title, onClick, icon: Icon}) {
+export function ButtonToOrder({ title, icon: Icon, onClick}) {
     return (
-        <Container>
+        <Container onClick={onClick}>
             {Icon && <Icon />}
             {title}
         </Container>

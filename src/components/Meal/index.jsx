@@ -8,8 +8,16 @@ import { LuChevronRight, LuMinus, LuPlus, LuHeart, LuPencil } from "react-icons/
 
 import { Button } from "../Button";
 
+import { useNavigate } from "react-router-dom";
+
 
 export function Meal({ data, toAdmin }) {
+    const navigate = useNavigate();
+
+    function handleClickToEdit() {
+        navigate('/dish');
+    }
+    
     return (
         <Container className="meal">
             <motion.div
@@ -17,7 +25,7 @@ export function Meal({ data, toAdmin }) {
                 whileHover={{ scale: 1.2 }} 
                 whileTap={{ scale: 0.8 }}
             >
-                <button type="button">{toAdmin ? <LuPencil /> : <LuHeart />}</button>
+                <button type="button">{toAdmin ? <LuPencil onClick={handleClickToEdit}/> : <LuHeart />}</button>
             </motion.div>
             <img src={mealImage} alt="" />
             <MealTitle>

@@ -31,7 +31,6 @@ export function HomeAdmin() {
                         <Meal toAdmin />
                         <Meal toAdmin />
                         <Meal toAdmin />
-                        <Meal toAdmin />
                         <a href=""><LuChevronLeft /></a>
                     </Meals>
                     

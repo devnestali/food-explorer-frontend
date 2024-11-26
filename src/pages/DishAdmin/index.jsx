@@ -9,8 +9,14 @@ import { Button } from "../../components/Button";
 import { LuChevronLeft, LuMinus, LuPlus } from "react-icons/lu";
 
 import MealPhoto from "../../assets/mealphoto.svg";
+import { useNavigate } from "react-router-dom";
 
 export function DishAdmin() {
+    const navigate = useNavigate()
+    
+    function handleClickToEdit() {
+        navigate("/edit");
+    }
     return (
         <Container>
             <Header toAdmin />
@@ -35,7 +41,7 @@ export function DishAdmin() {
                                 </div>
 
                                 <Buttons>
-                                    <Button title="Editar prato" toMeal />
+                                    <Button title="Editar prato" onClick={handleClickToEdit} toMeal />
                                 </Buttons>
                             </DetailsMeal>
                         </InfoMeal>

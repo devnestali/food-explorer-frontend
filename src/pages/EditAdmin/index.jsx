@@ -25,7 +25,7 @@ export function EditAdmin() {
             <main>
                 <Wrapper>
                     <ButtonText icon={LuArrowLeft} title="voltar" toBack />
-                    <h2>Adicionar prato</h2>
+                    <h2>Editar prato</h2>
                     <Form>
                         <HeaderInputs>
                             <FieldImageInput>

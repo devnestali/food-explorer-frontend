@@ -1,6 +1,7 @@
 import { styled } from 'styled-components'
+import { Link } from 'react-router-dom'
 
-export const Container = styled.div`
+export const Container = styled(Link)`
     width: 100%;
     
     text-align: center;
@@ -12,7 +13,7 @@ export const Container = styled.div`
         width: auto;
         padding: 0;
         
-        a {
+        p {
             font-weight: bold;
             font-size: 2.4rem;
 
@@ -23,7 +24,7 @@ export const Container = styled.div`
         }
     }
     
-    a {
+    p {
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
         font-size: 1.4rem;
         line-height: 2.4rem;

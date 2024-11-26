@@ -6,9 +6,17 @@ import { LuLogOut } from "react-icons/lu";
 
 import { ButtonToOrder } from "../ButtonToOrder";
 import { ButtonText } from "../ButtonText";
+import { useNavigate } from "react-router-dom";
 
 
 export function Header({ toAdmin }) {
+    const navigate = useNavigate();
+
+    function handleClickToAddAdmin() {
+        navigate("/add")
+    }
+    
+    
     return (
         <Container>
             <div className="logo">
@@ -24,7 +32,10 @@ export function Header({ toAdmin }) {
                 <input type="text" placeholder="Busque por pratos ou ingredientes"/>
             </InputSearch>
 
-            <ButtonToOrder icon={!toAdmin && LuClipboardList} title={toAdmin ? "Novo Prato" : "Pedidos (0)"}/>
+            <ButtonToOrder icon={!toAdmin && LuClipboardList} 
+                           title={toAdmin ? "Novo Prato" : "Pedidos (0)"} 
+                           onClick={toAdmin ? handleClickToAddAdmin : ""} // Ainda terá a rota para o usuário
+            />
             <ButtonText icon={LuLogOut} toBack />
         </Container>
     )
