@@ -20,9 +20,9 @@ export function SignUp() {
     async function handleSignUp() {
         try {
             const response = await api.post('/users', {
-                username: username,
-                email: email,
-                password: password,
+                username,
+                email,
+                password,
             });
             
             showToasts.success(response.data.message);
@@ -32,6 +32,8 @@ export function SignUp() {
         } catch (error) {
             if(error.message) {
                 showToasts.error(error.response.data.message);
+            } else {
+                showToasts.error("Não foi possível criar uma conta");
             }
         };
         
