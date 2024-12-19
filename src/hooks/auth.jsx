@@ -22,8 +22,15 @@ function AuthProvider({ children }) {
             localStorage.setItem('@foodexplorer:token', token);
             
         } catch (error) {
-            showToasts.error(error.response.data.message);
+            showToasts.error('Email e/ou senha incorreto.');
+            console.error(error)
         };
+    };
+
+    function signOut() {
+        localStorage.removeItem('@foodexplorer:token');
+        localStorage.removeItem('@foodexplorer:user');
+        setUserData(null);
     };
 
     useEffect(() => {
@@ -38,7 +45,7 @@ function AuthProvider({ children }) {
 
 
     return (
-        <AuthContext.Provider value={{ userData, signIn }}>
+        <AuthContext.Provider value={{ userData, signIn, signOut }}>
             {children}
         </AuthContext.Provider>
     );
