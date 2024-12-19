@@ -11,15 +11,16 @@ import { Button } from "../Button";
 import { useNavigate } from "react-router-dom";
 
 
-export function Meal({ data, toAdmin }) {
+export function Meal({ data, toAdmin, ...rest }) {
     const navigate = useNavigate();
+    console.log(data?.title)
 
     function handleClickToMeal() {
         navigate('/dish');
     }
     
     return (
-        <Container className="meal">
+        <Container className="meal" {...rest}>
             <motion.div
                 className="favorite"
                 whileHover={{ scale: 1.2 }} 
@@ -29,11 +30,11 @@ export function Meal({ data, toAdmin }) {
             </motion.div>
             <img src={mealImage} alt="" />
             <MealTitle>
-                <h2>Salada Ravanello</h2>
+                <h2>{data?.title}</h2>
                 <LuChevronRight />
             </MealTitle>
-            <p>Presunto de parma e rúcula em um pão com fermentação natural.</p>
-            <span>R$ 25,97</span>
+            <p>{data?.description}</p>
+            <span>{`R$ ${data?.price}`}</span>
             {
             !toAdmin && <Buttons>
                             <Amount>
@@ -46,4 +47,4 @@ export function Meal({ data, toAdmin }) {
             }
         </Container>
     )
-}
+};

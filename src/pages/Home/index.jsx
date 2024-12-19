@@ -8,8 +8,12 @@ import { Footer } from "../../components/Footer";
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 
 import mainImage from '../../assets/mainImage.png';
-import { useRef } from "react";
+
+import { useEffect, useRef, useState } from "react";
+import { api } from "../../services/api";
+import { showToasts } from "../../utils/toasts";
 export function Home() {
+    const [dishData, setDishData] = useState([]);
     const carouselRef = useRef([]);
     
     function scrollLeft (index, e) {
@@ -34,6 +38,25 @@ export function Home() {
         };
     };
 
+    useEffect(() => {
+        async function fetchDishData() {
+            try {
+                const response = await api.get('/dish');
+                setDishData(response.data);
+                
+            } catch (error) {
+                if(error.message) {
+                    showToasts.error(error.response.data.message);
+                } else {
+                    console.error(error);
+                }
+            }    
+        };
+
+        fetchDishData();
+
+    }, [])
+
     return (
         <Container>
             <Header />
@@ -53,11 +76,14 @@ export function Home() {
                     <Carousel>
                         <a href="" onClick={e => scrollRight(0, e)}><LuChevronRight /></a>
                         <Meals ref={el => carouselRef.current[0] = el}>
-                            <Meal />
-                            <Meal />
-                            <Meal />
-                            <Meal />
-                            <Meal />
+                            {
+                                dishData && dishData.map((item) => (
+                                    <Meal 
+                                        key={String(item.id)}
+                                        data={item}
+                                    />
+                                ))
+                            }
                         </Meals>
                         <a href="" onClick={e => scrollLeft(0, e)}><LuChevronLeft /></a>
                     </Carousel>
