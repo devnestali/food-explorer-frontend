@@ -6,15 +6,22 @@ import { LuLogOut } from "react-icons/lu";
 
 import { ButtonToOrder } from "../ButtonToOrder";
 import { ButtonText } from "../ButtonText";
+
 import { useNavigate } from "react-router-dom";
+import { useAuth } from '../../hooks/auth';
 
 
 export function Header({ toAdmin }) {
     const navigate = useNavigate();
+    const { signOut } = useAuth();
 
     function handleClickToAddAdmin() {
         navigate("/add")
-    }
+    };
+
+    function handleSignOut() {
+        signOut();
+    };
     
     
     return (
@@ -36,7 +43,7 @@ export function Header({ toAdmin }) {
                            title={toAdmin ? "Novo Prato" : "Pedidos (0)"} 
                            onClick={toAdmin ? handleClickToAddAdmin : ""}
             />
-            <ButtonText icon={LuLogOut} toBack />
+            <ButtonText icon={LuLogOut} toBack onClick={handleSignOut} />
         </Container>
     )
 }
