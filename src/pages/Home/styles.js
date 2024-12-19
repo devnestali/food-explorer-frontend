@@ -67,10 +67,20 @@ export const Meals = styled.div`
 
     overflow: hidden;
     border-radius: 1rem;
+`;
+
+export const Carousel = styled.div`
+    display: flex;
+    gap: 2.7rem;
+    position: relative;
+
+    overflow: hidden;
+    border-radius: 1rem;
 
     > a {
         position: absolute;
-        top: 45%;
+        top: 50%;
+        transform: translateY(-50%);
 
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
 
@@ -92,6 +102,7 @@ export const Meals = styled.div`
         width: 24rem;
         height: 100%;
         z-index: 2;
+        pointer-events: none;
 
         background: linear-gradient(
         to left,
