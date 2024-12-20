@@ -8,12 +8,15 @@ import { LuChevronRight, LuMinus, LuPlus, LuHeart, LuPencil } from "react-icons/
 
 import { Button } from "../Button";
 
+import { showToasts } from "../../utils/toasts";
+
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 
 export function Meal({ data, toAdmin, ...rest }) {
     const [isClicked, setIsClicked] = useState(false);
+    const [amount, setAmount] = useState(0);
 
     const navigate = useNavigate();
 
@@ -23,6 +26,18 @@ export function Meal({ data, toAdmin, ...rest }) {
 
     function handleClickToHeart() {
         setIsClicked(!isClicked);
+    }
+
+    function handleAmountClickPlus() {
+        setAmount(amount => amount + 1);
+    };
+
+    function handleAmountClickMinus() {
+        if (amount > 0) {
+            setAmount(amount => amount - 1);
+        } else {
+            showToasts.error('A quantidade tem que ser maior que 0.');
+        }
     }
     
     return (
@@ -45,9 +60,9 @@ export function Meal({ data, toAdmin, ...rest }) {
             {
             !toAdmin && <Buttons>
                             <Amount>
-                                <button><LuMinus /></button>
-                                <span>01</span>
-                                <button><LuPlus /></button>
+                                <button onClick={handleAmountClickMinus}><LuMinus /></button>
+                                <span>{amount}</span>
+                                <button onClick={handleAmountClickPlus}><LuPlus /></button>
                             </Amount>
                             <Button title="incluir" toMeal onClick={handleClickToMeal}/>
                         </Buttons>
