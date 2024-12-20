@@ -17,6 +17,8 @@ import { showToasts } from "../../utils/toasts";
 export function Home() {
     const [dishData, setDishData] = useState([]);
     const [dessertData, setDessertData] = useState([]);
+    const [drinkData, setDrinkData] = useState([]);
+
     const carouselRef = useRef([]);
     
     function scrollLeft (index, e) {
@@ -76,7 +78,25 @@ export function Home() {
         };
 
         fetchDessertData();
-    });
+    }, []);
+
+    useEffect(() => {
+        async function fetchDrinkData() {
+            try {
+                const response = await api.get('/drink');
+                setDrinkData(response.data);
+                
+            } catch (error) {
+                if(error.message) {
+                    showToasts.error(error.response.data.message);
+                } else {
+                    console.error(error);
+                }
+            }
+        };
+
+        fetchDrinkData();
+    }, []);
 
     return (
         <Container>
@@ -129,11 +149,14 @@ export function Home() {
                     <Carousel>
                         <a href="" onClick={e => scrollRight(2, e)}><LuChevronRight /></a>
                         <Meals ref={el => carouselRef.current[2] = el}>
-                            <Meal />
-                            <Meal />
-                            <Meal />
-                            <Meal />
-                            <Meal />
+                            {
+                                drinkData && drinkData.map(item => (
+                                    <Meal 
+                                        key={item.id}
+                                        data={item}
+                                    />
+                                ))
+                            }
                         </Meals>
                         <a href="" onClick={e => scrollLeft(2, e)}><LuChevronLeft /></a>
                     </Carousel>
