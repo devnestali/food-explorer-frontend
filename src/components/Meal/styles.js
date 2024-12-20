@@ -71,11 +71,12 @@ export const MealTitle = styled.div`
         font-weight: bold;
 
         margin-bottom: 1.5rem;
+        text-align: center;
     }
 
     > svg {
-        width: 2.2rem;
-        height: 2.2rem;
+        min-width: 2.2rem;
+        min-height: 2.2rem;
 
         stroke-width: 4;
     }

@@ -13,7 +13,6 @@ import { useNavigate } from "react-router-dom";
 
 export function Meal({ data, toAdmin, ...rest }) {
     const navigate = useNavigate();
-    console.log(data?.title)
 
     function handleClickToMeal() {
         navigate('/dish');
