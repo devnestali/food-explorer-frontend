@@ -30,7 +30,6 @@ export const Container = styled.div`
             background: transparent;
             border: none;
             outline: none;
-
         }
     }
     

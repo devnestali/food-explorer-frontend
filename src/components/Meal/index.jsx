@@ -9,13 +9,20 @@ import { LuChevronRight, LuMinus, LuPlus, LuHeart, LuPencil } from "react-icons/
 import { Button } from "../Button";
 
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 
 export function Meal({ data, toAdmin, ...rest }) {
+    const [isClicked, setIsClicked] = useState(false);
+
     const navigate = useNavigate();
 
     function handleClickToMeal() {
         navigate('/dish');
+    };
+
+    function handleClickToHeart() {
+        setIsClicked(!isClicked);
     }
     
     return (
@@ -24,8 +31,9 @@ export function Meal({ data, toAdmin, ...rest }) {
                 className="favorite"
                 whileHover={{ scale: 1.2 }} 
                 whileTap={{ scale: 0.8 }}
+                onClick={handleClickToHeart}
             >
-                <button type="button">{toAdmin ? <LuPencil onClick={handleClickToMeal}/> : <LuHeart />}</button>
+                <button type="button">{toAdmin ? <LuPencil onClick={handleClickToMeal}/> : <LuHeart style={{ fill: isClicked ? 'red' : '', color: isClicked ? 'red' : ''}}/>}</button>
             </motion.div>
             <img src={mealImage} alt="" />
             <MealTitle>
