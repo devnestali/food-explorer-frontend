@@ -10,15 +10,53 @@ import { LuChevronLeft, LuMinus, LuPlus } from'react-icons/lu'
 import MealPhoto from '../../assets/mealphoto.svg'
 import { Ingredient } from "../../components/Ingredient"
 
-import { useNavigate } from "react-router-dom"
+import { api } from "../../services/api"
+
+import { useNavigate, useParams, useLocation } from "react-router-dom"
+import { useEffect, useState } from "react"
+
  
 export function Dish() {
+    const [data, setData] = useState(); 
     const navigate = useNavigate();
+    
+    const { id } = useParams();
+    
+    const location = useLocation();
+    const path = location.pathname.split('/')[1];
 
     function handleOrder() {
         navigate("/");
-    }
+    };
+
+    async function fetchDishData() {
+        const response = await api.get(`/dish/${id}`);
+        setData(response.data);
+    };
     
+    async function fetchDessertData() {
+        const response = await api.get(`/dessert/${id}`);
+        setData(response.data);
+    };
+    
+    async function fetchDrinkData() {
+        const response = await api.get(`/drink/${id}`);
+        setData(response.data);
+    };
+
+    useEffect(() => {
+        switch (path) {
+            case "dish":
+                fetchDishData();
+                break;
+            case "dessert":
+                fetchDessertData();
+                break;
+            case "drink": 
+                fetchDrinkData();
+                break;
+        };
+    }, [path]);
     return (
         <Container>
             <Header />
@@ -30,16 +68,18 @@ export function Dish() {
                         <img src={MealPhoto} alt="meal" />
 
                         <DetailsMeal>
-                            <h2>Salada Ravanello</h2>
-                            <p>Rabanetes, folhas verdes e molho agridoce salpicado com gergelim. O pão naan dá um toque especial</p>
+                            <h2>{data?.title}</h2>
+                            <p>{data?.description}</p>
 
                             <div className="ingredients">
-                                <Ingredient name="alface" />
-                                <Ingredient name="cebola" />
-                                <Ingredient name="pao naan" />
-                                <Ingredient name="pepino" />
-                                <Ingredient name="rabanete" />
-                                <Ingredient name="tomate" />
+                                {
+                                    data?.ingredients && data?.ingredients.map((tag, i) => (
+                                        <Ingredient 
+                                            key={i}
+                                            name={tag} 
+                                        />
+                                    ))
+                                }
                             </div>
 
                             <Buttons>
@@ -48,7 +88,7 @@ export function Dish() {
                                     <span>01</span>
                                     <button><LuPlus /></button>
                                 </div>
-                                <Button title="incluir ∙ R$ 25,00" toMeal onClick={handleOrder}/>
+                                <Button title={`incluir ∙ R$ ${data?.price}`} toMeal onClick={handleOrder}/>
                             </Buttons>
                         </DetailsMeal>
                     </InfoMeal>
