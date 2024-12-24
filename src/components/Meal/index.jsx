@@ -21,12 +21,19 @@ export function Meal({ data, toAdmin, ...rest }) {
     const navigate = useNavigate();
 
     function handleClickToMeal() {
-        navigate('/dish');
+        switch (data.type) {
+            case "dish":
+                return navigate(`/dish/${data.id}`);
+            case "dessert":
+                return navigate(`/dessert/${data.id}`);
+            case "drink": 
+                return navigate(`/drink/${data.id}`);
+        };
     };
 
     function handleClickToHeart() {
         setIsClicked(!isClicked);
-    }
+    };
 
     function handleAmountClickPlus() {
         setAmount(amount => amount + 1);
@@ -38,7 +45,7 @@ export function Meal({ data, toAdmin, ...rest }) {
         } else {
             showToasts.error('A quantidade tem que ser maior que 0.');
         }
-    }
+    };
     
     return (
         <Container className="meal" {...rest}>
@@ -52,11 +59,11 @@ export function Meal({ data, toAdmin, ...rest }) {
             </motion.div>
             <img src={mealImage} alt="" />
             <MealTitle>
-                <h2>{data?.title}</h2>
+                <h2>{data.title}</h2>
                 <LuChevronRight />
             </MealTitle>
-            <p>{data?.description}</p>
-            <span>{`R$ ${data?.price}`}</span>
+            <p>{data.description}</p>
+            <span>{`R$ ${data.price}`}</span>
             {
             !toAdmin && <Buttons>
                             <Amount>
@@ -64,7 +71,7 @@ export function Meal({ data, toAdmin, ...rest }) {
                                 <span>{amount}</span>
                                 <button onClick={handleAmountClickPlus}><LuPlus /></button>
                             </Amount>
-                            <Button title="incluir" toMeal onClick={handleClickToMeal}/>
+                            <Button title="incluir" toMeal onClick={() => handleClickToMeal(data.type)}/>
                         </Buttons>
             }
         </Container>
