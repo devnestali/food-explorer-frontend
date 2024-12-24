@@ -8,7 +8,9 @@ export function UserRoutes() {
     return (
         <Routes>
             <Route path="/" element={<Home />}/>
-            <Route path="/dish" element={<Dish />}/>
+            <Route path="/dish/:id" element={<Dish />}/>
+            <Route path="/dessert/:id" element={<Dish />}/>
+            <Route path="/drink/:id" element={<Dish />}/>
             <Route path="*" element={<NotFound />}/>
         </Routes>
     )
