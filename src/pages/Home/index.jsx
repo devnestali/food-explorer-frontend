@@ -48,7 +48,6 @@ export function Home() {
             try {
                 const response = await api.get('/dish');
                 setDishData(response.data);
-                
             } catch (error) {
                 if(error.message) {
                     showToasts.error(error.response.data.message);
@@ -67,7 +66,6 @@ export function Home() {
             try {
                 const response = await api.get('/dessert');
                 setDessertData(response.data);
-                
             } catch (error) {
                 if(error.message) {
                     showToasts.error(error.response.data.message);
