@@ -121,7 +121,7 @@ export function Dish() {
                                     <span>{amount}</span>
                                     <button onClick={handleAmountClickPlus}><LuPlus /></button>
                                 </div>
-                                <Button title={`incluir ∙ R$ ${price.toFixed(2)}`} toMeal onClick={handleOrder}/>
+                                <Button title={`incluir ∙ R$ ${price.toFixed(2)}`} toMeal onClick={() => handleOrder()}/>
                             </Buttons>
                         </DetailsMeal>
                     </InfoMeal>
