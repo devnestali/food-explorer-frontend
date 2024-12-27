@@ -10,10 +10,14 @@ import { ButtonText } from "../ButtonText";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from '../../hooks/auth';
 
+import { useEffect, useState } from "react";
+
 
 export function Header({ toAdmin }) {
+    const { signOut, count } = useAuth();
+
+     
     const navigate = useNavigate();
-    const { signOut } = useAuth();
 
     function handleClickToAddAdmin() {
         navigate("/add")
@@ -22,7 +26,6 @@ export function Header({ toAdmin }) {
     function handleSignOut() {
         signOut();
     };
-    
     
     return (
         <Container>
@@ -40,7 +43,7 @@ export function Header({ toAdmin }) {
             </InputSearch>
 
             <ButtonToOrder icon={!toAdmin && LuClipboardList} 
-                           title={toAdmin ? "Novo Prato" : "Pedidos (0)"} 
+                           title={toAdmin ? "Novo Prato" : `Pedidos (${count})`} 
                            onClick={toAdmin ? handleClickToAddAdmin : ""}
             />
             <ButtonText icon={LuLogOut} toBack onClick={handleSignOut} />
