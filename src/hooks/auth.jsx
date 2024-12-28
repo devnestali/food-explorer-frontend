@@ -7,7 +7,12 @@ const AuthContext = createContext();
 
 function AuthProvider({ children }) {
     const [userData, setUserData] = useState(null);
-    const [count, setCount] = useState(0);
+    
+    const [count, setCount] = useState(() => {
+        const storedCount = localStorage.getItem('@foodexplorer:request');
+        return storedCount > 0 ? storedCount : 0;
+    });
+
     
     async function signIn(email, password) {
         try {
@@ -38,9 +43,7 @@ function AuthProvider({ children }) {
     
     function userRequests() {
         setCount(countValue => ++countValue);
-        
-        localStorage.setItem('@foodexplorer:request', count);
-
+    
         return count
     };
     
@@ -62,9 +65,8 @@ function AuthProvider({ children }) {
         localStorage.setItem('@foodexplorer:request', count);
     }, [count]);
 
-
     return (
-        <AuthContext.Provider value={{ userData, count, signIn, signOut, userRequests  }}>
+        <AuthContext.Provider value={{ userData, count, signIn, signOut, userRequests }}>
             {children}
         </AuthContext.Provider>
     );
