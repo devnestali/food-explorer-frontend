@@ -9,14 +9,11 @@ import { ButtonText } from "../ButtonText";
 
 import { useNavigate } from "react-router-dom";
 import { useAuth } from '../../hooks/auth';
-
 import { useEffect, useState } from "react";
 
-
-export function Header({ toAdmin }) {
+export function Header({ toAdmin, children }) {
     const { signOut, count } = useAuth();
 
-     
     const navigate = useNavigate();
 
     function handleClickToAddAdmin() {
@@ -26,6 +23,7 @@ export function Header({ toAdmin }) {
     function handleSignOut() {
         signOut();
     };
+
     
     return (
         <Container>
@@ -39,7 +37,7 @@ export function Header({ toAdmin }) {
 
             <InputSearch>
                 <LuSearch />
-                <input type="text" placeholder="Busque por pratos ou ingredientes"/>
+                {children}
             </InputSearch>
 
             <ButtonToOrder icon={!toAdmin && LuClipboardList} 
