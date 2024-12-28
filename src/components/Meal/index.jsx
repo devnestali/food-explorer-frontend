@@ -17,7 +17,6 @@ import { useState } from "react";
 export function Meal({ data, toAdmin, ...rest }) {
     const [isClicked, setIsClicked] = useState(false);
     const [amount, setAmount] = useState(0);
-    const [price, setPrice] = useState(data.price);
 
     const navigate = useNavigate();
 
@@ -38,13 +37,11 @@ export function Meal({ data, toAdmin, ...rest }) {
 
     function handleAmountClickPlus() {
         setAmount(amount => amount + 1);
-        setPrice(price => data.price + price);
     };
 
     function handleAmountClickMinus() {
         if (amount > 0) {
             setAmount(amount => amount - 1);
-            setPrice(price => price - data.price);
         } else {
             showToasts.error('A quantidade tem que ser maior que 0.');
         }
@@ -66,7 +63,7 @@ export function Meal({ data, toAdmin, ...rest }) {
                 <LuChevronRight />
             </MealTitle>
             <p>{data.description}</p>
-            <span>{`R$ ${price.toFixed(2)}`}</span>
+            <span>{`R$ ${data.price}`}</span>
             {
             !toAdmin && <Buttons>
                             <Amount>
