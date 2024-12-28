@@ -12,12 +12,17 @@ import mainImage from '../../assets/mainImage.png';
 import { useEffect, useRef, useState } from "react";
 
 import { api } from "../../services/api";
+
 import { showToasts } from "../../utils/toasts";
+
+import { useAuth } from "../../hooks/auth";
 
 export function Home() {
     const [dishData, setDishData] = useState([]);
     const [dessertData, setDessertData] = useState([]);
     const [drinkData, setDrinkData] = useState([]);
+    
+    const [search, setSearch] = useState("");
 
     const carouselRef = useRef([]);
     
@@ -46,7 +51,7 @@ export function Home() {
     useEffect(() => {
         async function fetchDishData() {
             try {
-                const response = await api.get('/dish');
+                const response = await api.get(`/dish?title=${search}`);
                 setDishData(response.data);
             } catch (error) {
                 if(error.message) {
@@ -59,12 +64,12 @@ export function Home() {
 
         fetchDishData();
 
-    }, []);
+    }, [search]);
 
     useEffect(() => {
         async function fetchDessertData() {
             try {
-                const response = await api.get('/dessert');
+                const response = await api.get(`/dessert?title=${search}`);
                 setDessertData(response.data);
             } catch (error) {
                 if(error.message) {
@@ -76,12 +81,12 @@ export function Home() {
         };
 
         fetchDessertData();
-    }, []);
+    }, [search]);
 
     useEffect(() => {
         async function fetchDrinkData() {
             try {
-                const response = await api.get('/drink');
+                const response = await api.get(`/drink?title=${search}`);
                 setDrinkData(response.data);
                 
             } catch (error) {
@@ -94,11 +99,18 @@ export function Home() {
         };
 
         fetchDrinkData();
-    }, []);
+    }, [search]);
 
     return (
         <Container>
-            <Header />
+            <Header>
+                <input 
+                    type="text" 
+                    placeholder="Busque por refeição, sobremesa e bebida"
+                    onChange={e => setSearch(e.target.value)}
+                    value={search}
+                />
+            </Header>
 
             <main>
                 <Wrapper>
