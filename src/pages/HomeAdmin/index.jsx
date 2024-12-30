@@ -1,4 +1,4 @@
-import { Container, MainHeader, Meals } from "./styles";
+import { Carousel, Container, MainHeader, Meals } from "./styles";
 
 import { Header } from '../../components/Header';
 import { Wrapper } from '../../components/Wrapper';
@@ -12,11 +12,36 @@ import mainImage from '../../assets/mainImage.png';
 
 import { LuChevronRight, LuChevronLeft } from "react-icons/lu";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function HomeAdmin() {
     const [dishData, setDishData] = useState([]);
     const [dessertData, setDessertData] = useState([]);
+    const [drinkData, setDrinkData] = useState([]);
+
+    const carouselRef = useRef([]);
+
+    function scrollRight(index, e) {
+        e.preventDefault();
+
+        if(carouselRef.current[index]) {
+            carouselRef.current[index].scrollBy({
+                left: 250,
+                behavior: "smooth",
+            })
+        };
+    };
+
+    function scrollLeft(index, e) {
+        e.preventDefault();
+
+        if(carouselRef.current[index]) {
+            carouselRef.current[index].scrollBy({
+                left: -250,
+                behavior: "smooth",
+            })
+        };
+    };
     
     useEffect(() => {
         async function fetchDishData() {
@@ -51,6 +76,24 @@ export function HomeAdmin() {
 
         fetchDessertData();
     }, []);
+
+    useEffect(() => {
+        async function fetchDrinkData() {
+            try {
+                const response = await api.get('/drink');
+                setDrinkData(response.data);
+
+            } catch (error) {
+                if(error.message) {
+                    showToasts.error(error.response.data.message);
+                } else {
+                    console.error(error);
+                }
+            }
+        };
+
+        fetchDrinkData();
+    }, []);
     return (
         <Container>
             <Header toAdmin />
@@ -66,45 +109,56 @@ export function HomeAdmin() {
                         </div>
                     </MainHeader> 
                     <h2>Refeições</h2>
-                    <Meals>
-                        <a href=""><LuChevronRight /></a>
-                        {
-                            dishData && dishData.map((item) => (
-                                <Meal 
-                                    key={String(item.id)}
-                                    data={item}
-                                    toAdmin 
-                                />
-                            ))
-                        }
-                        <a href=""><LuChevronLeft /></a>
-                    </Meals>
+                    <Carousel>
+                        <a href="" onClick={e => scrollRight(0, e)}><LuChevronRight /></a>
+                            <Meals ref={el => carouselRef.current[0] = el}>
+                                {
+                                    dishData && dishData.map((item) => (
+                                        <Meal 
+                                            key={String(item.id)}
+                                            data={item}
+                                            toAdmin 
+                                        />
+                                    ))
+                                }
+                            </Meals>
+                        <a href="" onClick={e => scrollLeft(0, e)}><LuChevronLeft /></a>
+                    </Carousel>
                     
                     <h2>Sobremesas</h2>
-                    <Meals>
-                        <a href="#"><LuChevronRight /></a>
-                        {
-                            dessertData && dessertData.map((item) => (
-                                <Meal 
-                                    key={String(item.id)}
-                                    data={item}
-                                    toAdmin
-                                />
-                            ))
-                        }
-                        <a href="#"><LuChevronLeft /></a>
-                    </Meals>
+                    <Carousel>
+                        <a href="#" onClick={e => scrollRight(1, e)}><LuChevronRight /></a>
+                            <Meals ref={el => carouselRef.current[1] = el}>
+                                {
+                                    dessertData && dessertData.map((item) => (
+                                        <Meal 
+                                            key={String(item.id)}
+                                            data={item}
+                                            toAdmin
+                                        />
+                                    ))
+                                }
+                            </Meals>
+                        <a href="#"><LuChevronLeft onClick={e => scrollLeft(1, e)}/></a>
+                    </Carousel>
                     
                     <h2>Bebidas</h2>
-                    <Meals>
-                        <a href="#"><LuChevronRight /></a>
-                        <Meal toAdmin />
-                        <Meal toAdmin />
-                        <Meal toAdmin />
-                        <Meal toAdmin />
-                        <Meal toAdmin />
-                        <a href="#"><LuChevronLeft /></a>
-                    </Meals>
+                    <Carousel>
+                        <a href="#" onClick={e => scrollRight(2, e)}><LuChevronRight /></a>
+                            <Meals ref={el => carouselRef.current[2] = el}>
+                                {
+                                    drinkData && drinkData.map((item) => (
+                                        <Meal 
+                                            key={String(item.id)}
+                                            data={item}
+                                            toAdmin
+                                        />
+                                    ))
+                                }
+                            </Meals>
+                        <a href="#"><LuChevronLeft onClick={e => scrollLeft(2, e)}/></a>
+
+                    </Carousel>
 
                 </Wrapper>
                 
