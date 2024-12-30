@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 
 export function HomeAdmin() {
     const [dishData, setDishData] = useState([]);
+    const [dessertData, setDessertData] = useState([]);
     
     useEffect(() => {
         async function fetchDishData() {
@@ -32,6 +33,23 @@ export function HomeAdmin() {
         };
         
         fetchDishData();
+    }, []);
+
+    useEffect(() => {
+        async function fetchDessertData() {
+            try {
+                const response = await api.get('/dessert');
+                setDessertData(response.data);
+            } catch (error) {
+                if(error.message) {
+                    showToasts.error(error.response.data.message);
+                } else {
+                    console.error(error);
+                }
+            }
+        };
+
+        fetchDessertData();
     }, []);
     return (
         <Container>
@@ -57,7 +75,6 @@ export function HomeAdmin() {
                                     data={item}
                                     toAdmin 
                                 />
-
                             ))
                         }
                         <a href=""><LuChevronLeft /></a>
@@ -66,11 +83,15 @@ export function HomeAdmin() {
                     <h2>Sobremesas</h2>
                     <Meals>
                         <a href="#"><LuChevronRight /></a>
-                        <Meal toAdmin />
-                        <Meal toAdmin />
-                        <Meal toAdmin />
-                        <Meal toAdmin />
-                        <Meal toAdmin />
+                        {
+                            dessertData && dessertData.map((item) => (
+                                <Meal 
+                                    key={String(item.id)}
+                                    data={item}
+                                    toAdmin
+                                />
+                            ))
+                        }
                         <a href="#"><LuChevronLeft /></a>
                     </Meals>
                     
