@@ -14,7 +14,7 @@ export function AdminRoutes() {
             <Route path="/dessert/:id" element={<DishAdmin />}/>
             <Route path="/drink/:id" element={<DishAdmin />}/>
             <Route path="/add" element={<AddAdmin />}/>
-            <Route path="/edit" element={<EditAdmin />}/>
+            <Route path="/edit/:path/:id" element={<EditAdmin />}/>
             <Route path="*" element={<NotFound />}/>
         </Routes>
     )
