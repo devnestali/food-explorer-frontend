@@ -5,7 +5,7 @@ import { Wrapper } from "../../components/Wrapper";
 import { Meal } from "../../components/Meal";
 import { Footer } from "../../components/Footer";
 
-import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
+import { LuChevronLeft, LuChevronRight, LuSearch } from "react-icons/lu";
 
 import mainImage from '../../assets/mainImage.png';
 
@@ -104,6 +104,7 @@ export function Home() {
     return (
         <Container>
             <Header>
+                <LuSearch />
                 <input 
                     type="text" 
                     placeholder="Busque por refeição, sobremesa e bebida"

@@ -1,6 +1,5 @@
 import { Container, InputSearch } from "./styles";
 
-import { LuSearch } from "react-icons/lu";
 import { LuClipboardList } from "react-icons/lu";
 import { LuLogOut } from "react-icons/lu";
 
@@ -9,7 +8,6 @@ import { ButtonText } from "../ButtonText";
 
 import { useNavigate } from "react-router-dom";
 import { useAuth } from '../../hooks/auth';
-import { useEffect, useState } from "react";
 
 export function Header({ toAdmin, children }) {
     const { signOut, count } = useAuth();
@@ -36,7 +34,6 @@ export function Header({ toAdmin, children }) {
             </div>
 
             <InputSearch>
-                <LuSearch />
                 {children}
             </InputSearch>
 

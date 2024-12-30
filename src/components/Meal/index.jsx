@@ -59,11 +59,11 @@ export function Meal({ data, toAdmin, ...rest }) {
             </motion.div>
             <img src={mealImage} alt="" />
             <MealTitle>
-                <h2>{data.title}</h2>
+                <h2>{data?.title}</h2>
                 <LuChevronRight />
             </MealTitle>
-            <p>{data.description}</p>
-            <span>{`R$ ${data.price}`}</span>
+            <p>{data?.description}</p>
+            <span>{`R$ ${data?.price}`}</span>
             {
             !toAdmin && <Buttons>
                             <Amount>
