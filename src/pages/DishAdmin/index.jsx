@@ -25,7 +25,7 @@ export function DishAdmin() {
     const path = pathname.split("/")[1];
     
     function handleClickToEdit() {
-        navigate("/edit");
+        navigate(`/edit/${path}/${id}`);
     };
 
     async function fetchDishData() {
