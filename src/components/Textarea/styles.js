@@ -21,6 +21,7 @@ export const Container = styled.div`
 
         border-radius: 0.8rem;
         padding: 1.4rem;
+        font-size: 1.6rem;
     }
 
     > textarea::placeholder  {
