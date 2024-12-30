@@ -20,6 +20,17 @@ export function HomeAdmin() {
     const [drinkData, setDrinkData] = useState([]);
 
     const carouselRef = useRef([]);
+    
+    function scrollLeft(index, e) {
+        e.preventDefault();
+
+        if(carouselRef.current[index]) {
+            carouselRef.current[index].scrollBy({
+                left: -250,
+                behavior: "smooth",
+            })
+        };
+    };
 
     function scrollRight(index, e) {
         e.preventDefault();
@@ -32,16 +43,6 @@ export function HomeAdmin() {
         };
     };
 
-    function scrollLeft(index, e) {
-        e.preventDefault();
-
-        if(carouselRef.current[index]) {
-            carouselRef.current[index].scrollBy({
-                left: -250,
-                behavior: "smooth",
-            })
-        };
-    };
     
     useEffect(() => {
         async function fetchDishData() {
