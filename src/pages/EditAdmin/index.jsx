@@ -19,6 +19,13 @@ import { api } from "../../services/api";
 
 export function EditAdmin() {
     const [data, setData] = useState(null);
+    
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+    const [price, setPrice] = useState();
+    
+    const [ingredients, setIngredients] = useState([]);
+    const [newIngredient, setNewIngredient] = useState("");
 
     const { path, id } = useParams();
 
@@ -28,19 +35,45 @@ export function EditAdmin() {
         { id: 2, label: "Bebida", value: "drink"},
     ];
 
+    function handleAddTag() {
+        setIngredients([...ingredients, newIngredient]);
+        setNewIngredient("");
+    };
+
+    function handleRemoveTag(deletedIngredient) {
+        const filteredIngredients = ingredients.filter(ingredient => ingredient !== deletedIngredient )
+
+        setIngredients(filteredIngredients);
+    };
+
     async function fetchDishData() {
-        const response = await api.get(`/dish/${id}`);
-        setData(response.data);
+        const { data } = await api.get(`/dish/${id}`);
+        setData(data);
+        
+        setTitle(data.title);
+        setDescription(data.description);
+        setPrice(data.price);
+        setIngredients([...data.ingredients]);
     };
 
     async function fetchDessertData() {
-        const response = await api.get(`/dessert/${id}`);
-        setData(response.data);
+        const { data } = await api.get(`/dessert/${id}`);
+        setData(data);
+        
+        setTitle(data.title);
+        setDescription(data.description);
+        setPrice(data.price);
+        setIngredients([...data.ingredients]);
     };
 
     async function fetchDrinkData() {
-        const response = await api.get(`/drink/${id}`);
-        setData(response.data);
+        const { data } = await api.get(`/drink/${id}`);
+        setData(data);
+        
+        setTitle(data.title);
+        setDescription(data.description);
+        setPrice(data.price);
+        setIngredients([...data.ingredients]);
     };
 
     useEffect(() => {
@@ -83,19 +116,19 @@ export function EditAdmin() {
                                 title="Nome" 
                                 placeholder="Salada Ceasar" 
                                 toAdmin
-                                value={data?.title} 
+                                value={title}
+                                onChange={e => setTitle(e.target.value)}
                             />
                             
                             <FieldTypeInput>
                                 <label htmlFor="typeOfMeal">Categoria</label>
                                 <LuChevronDown />
-                                <select id="typeOfMeal">
+                                <select id="typeOfMeal" defaultValue={path}>
                                     {
                                         options.map(option => (
                                             <option 
                                                 key={option.id}
                                                 value={option.value}
-                                                selected={path === option.value}
                                             >
                                                 {option.label}
                                             </option>
@@ -110,14 +143,21 @@ export function EditAdmin() {
                                 <label htmlFor="ingredients">Ingredientes</label>
                                 <div className="ingredients">
                                     {
-                                        data?.ingredients && data?.ingredients.map((tag, i) => (
+                                        ingredients && ingredients.map((tag, i) => (
                                             <IngredientItem
                                                 key={i}
                                                 value={tag}
+                                                onClick={() => handleRemoveTag(tag)}
                                             />
                                         ))
                                     }
-                                    <IngredientItem placeholder="Adicionar" isNew />
+                                    <IngredientItem 
+                                        placeholder="Adicionar" 
+                                        isNew 
+                                        value={newIngredient}
+                                        onChange={e => setNewIngredient(e.target.value)}
+                                        onClick={handleAddTag}
+                                    />
                                 </div>
                             </div>
     
@@ -125,13 +165,15 @@ export function EditAdmin() {
                                 title="Preço" 
                                 placeholder="R$ 00,00" 
                                 toAdmin
-                                value={data?.price} 
+                                value={price}
+                                onChange={e => setPrice(e.target.value)}
                             />
                         </BodyInputs>
                         
                         <Textarea 
                             placeholder="A Salada César é uma opção refrescante para o verão."
-                            value={data?.description} 
+                            value={description} 
+                            onChange={e => setDescription(e.target.value)}
                         />
 
                         <div className="buttons">

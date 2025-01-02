@@ -176,6 +176,7 @@ export const BodyInputs = styled.div`
             
     
             display: flex;
+            flex-wrap: wrap;
     
             background-color: ${({ theme }) => theme.COLORS.DARK_800};
             border-radius: 0.8rem;
