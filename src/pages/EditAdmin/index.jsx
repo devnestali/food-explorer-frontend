@@ -11,29 +11,63 @@ import { Textarea } from "../../components/Textarea";
 
 import { LuArrowLeft, LuArrowUpFromLine, LuChevronDown } from "react-icons/lu";
 
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { useEffect, useState } from "react";
 
 import { api } from "../../services/api";
+import { showToasts } from "../../utils/toasts";
 
 export function EditAdmin() {
     const [data, setData] = useState(null);
     
-    const [title, setTitle] = useState("");
+    const [title, setTitle] = useState(data?.title);
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState();
     
     const [ingredients, setIngredients] = useState([]);
     const [newIngredient, setNewIngredient] = useState("");
-
+    
     const { path, id } = useParams();
+    const [selectedCategory, setSelectedCategory] = useState(path);
+    
+    const navigate = useNavigate();
 
     const options = [
         { id: 0, label: "Refeição", value: "dish"},
         { id: 1, label: "Sobremesa", value: "dessert"},
         { id: 2, label: "Bebida", value: "drink"},
     ];
+
+
+    function inputChecker() {
+        if (!title) {
+            showToasts.error("Preencha o nome do prato");
+            return false;
+        };
+
+        if(selectedCategory !== path) {
+            showToasts.error("A categoria do prato não pode ser alterada");
+            return false;
+        };
+
+        if(!description) {
+            showToasts.error("Preencha a descrição");
+            return false;
+        };
+
+        if(!price) {
+            showToasts.error("Preencha o preço ");
+            return false;
+        };
+
+        if(newIngredient) {
+            showToasts.error("Um marcador foi preenchido, mas não foi adicionado. Adicione-o, ou deixe o campo vazio.");
+            return false;
+        };
+
+        return true;
+    };
 
     function handleAddTag() {
         setIngredients([...ingredients, newIngredient]);
@@ -47,35 +81,80 @@ export function EditAdmin() {
     };
 
     async function fetchDishData() {
-        const { data } = await api.get(`/dish/${id}`);
-        setData(data);
-        
-        setTitle(data.title);
-        setDescription(data.description);
-        setPrice(data.price);
-        setIngredients([...data.ingredients]);
+        try {
+            const { data } = await api.get(`/dish/${id}`);
+            setData(data);
+            
+            setTitle(data.title);
+            setDescription(data.description);
+            setPrice(data.price);
+            setIngredients([...data.ingredients]);
+            
+        } catch (error) {
+            if(error.message) {
+                showToasts.error(error.response.data.message);
+            }
+        }
     };
 
     async function fetchDessertData() {
-        const { data } = await api.get(`/dessert/${id}`);
-        setData(data);
-        
-        setTitle(data.title);
-        setDescription(data.description);
-        setPrice(data.price);
-        setIngredients([...data.ingredients]);
+        try {
+            const { data } = await api.get(`/dessert/${id}`);
+            setData(data);
+            
+            setTitle(data.title);
+            setDescription(data.description);
+            setPrice(data.price);
+            setIngredients([...data.ingredients]);
+            
+        } catch (error) {
+            if(error.message) {
+                showToasts.error(error.response.data.message);
+            }
+        }
     };
 
     async function fetchDrinkData() {
-        const { data } = await api.get(`/drink/${id}`);
-        setData(data);
-        
-        setTitle(data.title);
-        setDescription(data.description);
-        setPrice(data.price);
-        setIngredients([...data.ingredients]);
+        try {
+            const { data } = await api.get(`/drink/${id}`);
+            setData(data);
+            
+            setTitle(data.title);
+            setDescription(data.description);
+            setPrice(data.price);
+            setIngredients([...data.ingredients]);
+            
+        } catch (error) {
+            if(error.message) {
+                showToasts.error(error.response.data.message);
+            }
+        }
     };
 
+    async function handleSave() {
+        const passedChecker = inputChecker();
+
+        if(passedChecker) {
+            try {
+                api.put(`/${selectedCategory}/${id}`, {
+                    newTitle: title,
+                    newDescription: description,
+                    newPrice: price,
+                    newIngredients: ingredients,
+                });
+                
+                showToasts.success("Prato atualizado com sucesso!");                
+                navigate("/");
+            } catch (error) {
+                if(error.message) {
+                    showToasts.error(error.response.data.message);
+                } else {
+                    showToasts.error("Não foi possível atualizar o prato");
+                    console.error(error);
+                }
+            }
+        };
+    };
     useEffect(() => {
         switch (path) {
             case "dish":
@@ -123,7 +202,7 @@ export function EditAdmin() {
                             <FieldTypeInput>
                                 <label htmlFor="typeOfMeal">Categoria</label>
                                 <LuChevronDown />
-                                <select id="typeOfMeal" defaultValue={path}>
+                                <select id="typeOfMeal" defaultValue={path} onChange={e => setSelectedCategory(e.target.value)}>
                                     {
                                         options.map(option => (
                                             <option 
@@ -165,8 +244,12 @@ export function EditAdmin() {
                                 title="Preço" 
                                 placeholder="R$ 00,00" 
                                 toAdmin
-                                value={price}
-                                onChange={e => setPrice(e.target.value)}
+                                value={price ? `R$ ${price}` : ""}
+                                onChange={e => {
+                                    const value = e.target.value.replace(/[^\d,]/g, '');
+                                    
+                                    setPrice(value);
+                                }}
                             />
                         </BodyInputs>
                         
@@ -178,7 +261,11 @@ export function EditAdmin() {
 
                         <div className="buttons">
                             <Button title="Excluir prato" toDelete />
-                            <Button title="Salvar alterações" disabled />
+                            <Button 
+                                title="Salvar alterações" 
+                                toEdit 
+                                onClick={handleSave}
+                            />
                         </div>
                     </Form>
                 </Wrapper>
