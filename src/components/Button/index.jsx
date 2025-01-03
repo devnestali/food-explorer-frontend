@@ -1,13 +1,13 @@
 import { Container } from "./styles";
 
-export function Button({ disabled = false, toDelete, title, onClick, toMeal }) {
+export function Button({ toEdit = false, toDelete, title, onClick, toMeal }) {
     return (
         <Container
             className="button"
             type="button"
             data-todelete={toDelete}
             data-tomeal={toMeal}
-            disabled={disabled}
+            data-toedit={toEdit}
             onClick={onClick}
         >
             {title}

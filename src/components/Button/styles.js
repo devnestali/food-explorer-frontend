@@ -24,7 +24,7 @@ export const Container = styled.button`
         background-color: ${({ theme }) => theme.COLORS.DARK_800};
     }
     
-    &:disabled {
+    &[data-toedit="true"] {
         background-color: ${({ theme }) => theme.COLORS.TOMATO_400};
     }
 `;
