@@ -12,6 +12,7 @@ import { IngredientItem } from "../../components/IngredientItem";
 import { Textarea } from "../../components/Textarea";
 
 import { useState } from "react";
+import { showToasts } from "../../utils/toasts";
 
 export function AddAdmin() {
     const [title, setTitle] = useState("");
@@ -26,6 +27,38 @@ export function AddAdmin() {
         { id: 2, label: "Sobremesa", value: "dessert"},
         { id: 3, label: "Bebida", value: "drink"},
     ];
+    
+    const [selectedCategory, setSelectedCategory] = useState(options[0].value);
+
+    function inputChecker() {
+        if(!title) {
+            showToasts.error("Preencha o nome do prato");
+            return false;
+        };
+
+        if(!ingredients.length) {
+            showToasts.error("É necessário pelo menos 1 ingrediente");
+            return false;
+        };
+
+        if(!price) {
+            showToasts.error("Preencha o preço");
+            return false;
+        };
+
+        if(!description) {
+            showToasts.error("Preencha a descrição");
+            return false;
+        };
+
+        if(newIngredient) {
+            showToasts.error("Um marcador foi preenchido, mas não foi adicionado. Adicione-o, ou deixe o campo vazio.");
+            return false;
+        };
+
+        return true;
+    };
+    
 
     function handleAddIngredient() {
         setIngredients([...ingredients, newIngredient]);
@@ -39,15 +72,11 @@ export function AddAdmin() {
     };
 
     async function handleCreateMeal() {
-        const data = {
-            title,
-            price,
-            description,
-            ingredients,
-        };
+        const passedChecker = inputChecker();
 
-        return console.log(data);
+        return console.log(passedChecker);
     };
+
 
     return (
         <Container>
@@ -82,10 +111,15 @@ export function AddAdmin() {
                             <FieldTypeInput>
                                 <label htmlFor="typeOfMeal">Categoria</label>
                                 <LuChevronDown />
-                                <select id="typeOfMeal">
+                                <select id="typeOfMeal" onChange={e => setSelectedCategory(e.target.value)}>
                                     {
                                         options.map(option => (
-                                            <option key={option.id} value={option.id}>{option.label}</option>
+                                            <option 
+                                                key={option.id} 
+                                                value={option.value}
+                                            >
+                                                {option.label}
+                                            </option>
                                         ))
                                     }
                                 </select>

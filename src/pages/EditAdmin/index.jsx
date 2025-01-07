@@ -57,7 +57,7 @@ export function EditAdmin() {
         };
 
         if(!price) {
-            showToasts.error("Preencha o preço ");
+            showToasts.error("Preencha o preço");
             return false;
         };
 
