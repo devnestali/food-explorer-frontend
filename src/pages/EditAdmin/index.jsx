@@ -69,12 +69,12 @@ export function EditAdmin() {
         return true;
     };
 
-    function handleAddTag() {
+    function handleAddIngredient() {
         setIngredients([...ingredients, newIngredient]);
         setNewIngredient("");
     };
 
-    function handleRemoveTag(deletedIngredient) {
+    function handleRemoveIngredient(deletedIngredient) {
         const filteredIngredients = ingredients.filter(ingredient => ingredient !== deletedIngredient )
 
         setIngredients(filteredIngredients);
@@ -185,7 +185,8 @@ export function EditAdmin() {
                                     <label htmlFor="inputImage">
                                         <input type="file" id="inputImage" accept="image/*" />
                                         <div className="text-container">
-                                            <LuArrowUpFromLine /> Selecionar imagem
+                                            <LuArrowUpFromLine /> 
+                                            <h3>Selecionar imagem</h3>
                                         </div>
                                     </label>
                                 </div>
@@ -222,11 +223,11 @@ export function EditAdmin() {
                                 <label htmlFor="ingredients">Ingredientes</label>
                                 <div className="ingredients">
                                     {
-                                        ingredients && ingredients.map((tag, i) => (
+                                        ingredients && ingredients.map((ingredient, i) => (
                                             <IngredientItem
                                                 key={i}
-                                                value={tag}
-                                                onClick={() => handleRemoveTag(tag)}
+                                                value={ingredient}
+                                                onClick={() => handleRemoveIngredient(ingredient)}
                                             />
                                         ))
                                     }
@@ -235,7 +236,7 @@ export function EditAdmin() {
                                         isNew 
                                         value={newIngredient}
                                         onChange={e => setNewIngredient(e.target.value)}
-                                        onClick={handleAddTag}
+                                        onClick={handleAddIngredient}
                                     />
                                 </div>
                             </div>

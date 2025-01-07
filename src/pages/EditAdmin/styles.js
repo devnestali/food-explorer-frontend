@@ -87,7 +87,9 @@ export const FieldImageInput = styled.div`
                 align-items: center;
                 gap: .8rem;
 
-                font-weight: 500;
+                > h3 {
+                    font-weight: 500;
+                }
 
                 > svg {
                     width: 2.4rem;
