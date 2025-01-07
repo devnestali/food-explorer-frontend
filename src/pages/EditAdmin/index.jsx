@@ -155,6 +155,22 @@ export function EditAdmin() {
             }
         };
     };
+
+    async function handleDelete() {
+        try {
+            api.delete(`/${selectedCategory}/${id}`);
+            showToasts.success("Prato deletado com sucesso!");                
+            navigate("/");
+        } catch (error) {
+            if(error.message) {
+                showToasts.error(error.response.data.message);
+            } else {
+                showToasts.error("Não foi possível deletar o prato");
+                console.error(error);
+            }
+        }
+    };
+
     useEffect(() => {
         switch (path) {
             case "dish":
@@ -261,7 +277,11 @@ export function EditAdmin() {
                         />
 
                         <div className="buttons">
-                            <Button title="Excluir prato" toDelete />
+                            <Button 
+                                title="Excluir prato" 
+                                toDelete
+                                onClick={handleDelete} 
+                            />
                             <Button 
                                 title="Salvar alterações" 
                                 toEdit 
