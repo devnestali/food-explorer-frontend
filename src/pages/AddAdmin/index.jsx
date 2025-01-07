@@ -12,15 +12,21 @@ import { IngredientItem } from "../../components/IngredientItem";
 import { Textarea } from "../../components/Textarea";
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { showToasts } from "../../utils/toasts";
+
+import { api } from "../../services/api";
 
 export function AddAdmin() {
     const [title, setTitle] = useState("");
-    const [price, setPrice] = useState();
+    const [price, setPrice] = useState(0);
     const [description, setDescription] = useState("");
 
     const [ingredients, setIngredients] = useState([]);
     const [newIngredient, setNewIngredient] = useState("");
+
+    const navigate = useNavigate();
     
     const options = [
         { id: 1, label: "Refeição", value: "dish"},
@@ -74,7 +80,25 @@ export function AddAdmin() {
     async function handleCreateMeal() {
         const passedChecker = inputChecker();
 
-        return console.log(passedChecker);
+        if(passedChecker) {
+            try {
+                await api.post(`/${selectedCategory}`, {
+                    title,
+                    description,
+                    price,
+                    ingredients,
+                });
+                showToasts.success("Prato adicionado com sucesso!");
+                navigate("/");
+            } catch (error) {
+                if(error.message) {
+                    showToasts.error(error.response.data.message);
+                } else {
+                    showToasts.error("Não foi possível criar um prato");
+                    console.error(error);
+                }
+            };
+        }
     };
 
 
@@ -152,9 +176,14 @@ export function AddAdmin() {
     
                             <Input 
                                 title="Preço" 
-                                placeholder="R$ 00,00" 
+                                placeholder="R$ 00.00" 
                                 toAdmin
-                                onChange={e => setPrice(e.target.value)} 
+                                value={price ? `R$ ${price}` : ""}
+                                onChange={e => {
+                                    const value = e.target.value.replace(/[^\d.]/g, '');
+                                    
+                                    setPrice(value);
+                                }}
                             />
                         </BodyInputs>
                         
