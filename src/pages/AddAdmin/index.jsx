@@ -11,12 +11,43 @@ import { LuArrowLeft, LuArrowUpFromLine, LuChevronDown } from "react-icons/lu";
 import { IngredientItem } from "../../components/IngredientItem";
 import { Textarea } from "../../components/Textarea";
 
+import { useState } from "react";
+
 export function AddAdmin() {
+    const [title, setTitle] = useState("");
+    const [price, setPrice] = useState();
+    const [description, setDescription] = useState("");
+
+    const [ingredients, setIngredients] = useState([]);
+    const [newIngredient, setNewIngredient] = useState("");
+    
     const options = [
-        { id: 1, label: "Refeição"},
-        { id: 2, label: "Sobremesa"},
-        { id: 3, label: "Bebida"},
-    ]
+        { id: 1, label: "Refeição", value: "dish"},
+        { id: 2, label: "Sobremesa", value: "dessert"},
+        { id: 3, label: "Bebida", value: "drink"},
+    ];
+
+    function handleAddIngredient() {
+        setIngredients([...ingredients, newIngredient]);
+        setNewIngredient("");
+    };
+
+    function handleRemoveIngredient(deletedIngredient) {
+        const filteredIngredients = ingredients.filter(ingredient => ingredient !== deletedIngredient);
+
+        setIngredients(filteredIngredients);
+    };
+
+    async function handleCreateMeal() {
+        const data = {
+            title,
+            price,
+            description,
+            ingredients,
+        };
+
+        return console.log(data);
+    };
 
     return (
         <Container>
@@ -34,13 +65,19 @@ export function AddAdmin() {
                                     <label htmlFor="inputImage">
                                         <input type="file" id="inputImage" accept="image/*" />
                                         <div className="text-container">
-                                            <LuArrowUpFromLine /> Selecionar imagem
+                                            <LuArrowUpFromLine /> 
+                                            <h3>Selecionar Imagem</h3>
                                         </div>
                                     </label>
                                 </div>
                             </FieldImageInput>
                             
-                            <Input title="Nome" placeholder="Ex.: Salada Ceasar" toAdmin />
+                            <Input 
+                                title="Nome" 
+                                placeholder="Ex.: Salada Ceasar" 
+                                toAdmin
+                                onChange={e => setTitle(e.target.value)} 
+                            />
                             
                             <FieldTypeInput>
                                 <label htmlFor="typeOfMeal">Categoria</label>
@@ -59,18 +96,45 @@ export function AddAdmin() {
                             <div className="containerBody">
                                 <label htmlFor="ingredients">Ingredientes</label>
                                 <div className="ingredients">
-                                    <IngredientItem value="Arroz"/>
-                                    <IngredientItem placeholder="Adicionar" isNew />
+                                    {
+                                        ingredients.map((ingredient, i) => (
+                                            <IngredientItem 
+                                                key={i}
+                                                value={ingredient}
+                                                onClick={() => handleRemoveIngredient(ingredient)}
+                                            />
+                                        ))
+                                    }
+
+                                    <IngredientItem 
+                                        placeholder="Adicionar" 
+                                        isNew
+                                        value={newIngredient}
+                                        onChange={e => setNewIngredient(e.target.value)}
+                                        onClick={handleAddIngredient} 
+                                    />
                                 </div>
                             </div>
     
-                            <Input title="Preço" placeholder="R$ 00,00" toAdmin />
+                            <Input 
+                                title="Preço" 
+                                placeholder="R$ 00,00" 
+                                toAdmin
+                                onChange={e => setPrice(e.target.value)} 
+                            />
                         </BodyInputs>
                         
-                        <Textarea placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" />
+                        <Textarea 
+                            placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
+                            onChange={e => setDescription(e.target.value)} 
+                        />
 
                         <div className="buttons">
-                            <Button title="Salvar alterações" disabled />
+                            <Button 
+                                title="Salvar alterações" 
+                                toEdit
+                                onClick={handleCreateMeal}
+                            />
                         </div>
                     </Form>
                 </Wrapper>
