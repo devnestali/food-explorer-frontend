@@ -30,7 +30,7 @@ export const Container = styled.footer`
 
     a {
         position: relative;
-        color: ${({ theme }) => theme.COLORS.TOMATO_100};
+        color: ${({ theme }) => theme.COLORS.CAKE_200};
         font-weight: 800;
         transition: all .5s;
         
@@ -49,11 +49,11 @@ export const Container = styled.footer`
     }
 
     a:hover {
-        background: red;
-        box-shadow: 0 0 5px ${({ theme }) => theme.COLORS.TOMATO_100}, 
-        0 0 25px ${({ theme }) => theme.COLORS.TOMATO_100}, 
-        0 0 50px ${({ theme }) => theme.COLORS.TOMATO_100}, 
-        0 0 200px ${({ theme }) => theme.COLORS.TOMATO_100};
+        background: ${({ theme }) => theme.COLORS.CAKE_100};
+        box-shadow: 0 0 5px ${({ theme }) => theme.COLORS.CAKE_100}, 
+        0 0 25px ${({ theme }) => theme.COLORS.CAKE_100}, 
+        0 0 50px ${({ theme }) => theme.COLORS.CAKE_100}, 
+        0 0 200px ${({ theme }) => theme.COLORS.CAKE_100};
         
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
     }

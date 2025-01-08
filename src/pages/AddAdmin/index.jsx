@@ -18,13 +18,20 @@ import { showToasts } from "../../utils/toasts";
 
 import { api } from "../../services/api";
 
+import { useAuth } from "../../hooks/auth";
+
 export function AddAdmin() {
+    const { updateImage } = useAuth();
+    
     const [title, setTitle] = useState("");
     const [price, setPrice] = useState(0);
     const [description, setDescription] = useState("");
 
     const [ingredients, setIngredients] = useState([]);
     const [newIngredient, setNewIngredient] = useState("");
+    
+    const [imageUrl, setImageUrl] = useState(null);
+    const [imageFile, setImageFile] = useState(null);
 
     const navigate = useNavigate();
     
@@ -37,6 +44,11 @@ export function AddAdmin() {
     const [selectedCategory, setSelectedCategory] = useState(options[0].value);
 
     function inputChecker() {
+        if(!imageFile) {
+            showToasts.error("Selecione uma imagem para o prato");
+            return false;
+        };
+        
         if(!title) {
             showToasts.error("Preencha o nome do prato");
             return false;
@@ -64,6 +76,14 @@ export function AddAdmin() {
 
         return true;
     };
+
+    function handleImageUpdate(e) {
+        const file = e.target.files[0];
+        setImageFile(file);
+        
+        const url = URL.createObjectURL(file);
+        setImageUrl(url);
+    };
     
 
     function handleAddIngredient() {
@@ -82,12 +102,17 @@ export function AddAdmin() {
 
         if(passedChecker) {
             try {
-                await api.post(`/${selectedCategory}`, {
+                const { data } = await api.post(`/${selectedCategory}`, {
                     title,
                     description,
                     price,
                     ingredients,
                 });
+
+                const mealId = data.id[0];
+                
+                updateImage({ type: selectedCategory, id: mealId, file: imageFile })
+
                 showToasts.success("Prato adicionado com sucesso!");
                 navigate("/");
             } catch (error) {
@@ -116,10 +141,17 @@ export function AddAdmin() {
                                 <p className="inputImage">Imagem do prato</p>
                                 <div className="dishImageInput">
                                     <label htmlFor="inputImage">
-                                        <input type="file" id="inputImage" accept="image/*" />
+                                        <input 
+                                            type="file" 
+                                            id="inputImage" 
+                                            accept="image/*"
+                                            onChange={e => {
+                                                handleImageUpdate(e);
+                                            }} 
+                                        />
                                         <div className="text-container">
                                             <LuArrowUpFromLine /> 
-                                            <h3>Selecionar Imagem</h3>
+                                            <h3>{imageUrl ? imageFile.name : "Selecionar Imagem"}</h3>
                                         </div>
                                     </label>
                                 </div>
