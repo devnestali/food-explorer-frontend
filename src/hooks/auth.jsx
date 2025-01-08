@@ -46,6 +46,23 @@ function AuthProvider({ children }) {
     
         return count
     };
+
+    async function updateImage({ type, file, id }) {
+        try {
+            const fileForm = new FormData();
+            fileForm.append('file', file);
+
+            await api.patch(`/${type}/file/${id}`, fileForm);
+            console.log('imagem atualizada com sucesso');
+        } catch (error) {
+            if(error.message) {
+                showToasts.error(error.response.data.message);
+            } else {
+                showToasts.error("Erro ao adicionar imagem");
+                console.error(error);
+            }
+        }
+    };
     
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem('@foodexplorer:user'));
@@ -66,7 +83,7 @@ function AuthProvider({ children }) {
     }, [count]);
 
     return (
-        <AuthContext.Provider value={{ userData, count, signIn, signOut, userRequests }}>
+        <AuthContext.Provider value={{ userData, count, signIn, signOut, userRequests, updateImage }}>
             {children}
         </AuthContext.Provider>
     );
