@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 
-export function Meal({ data, toAdmin, ...rest }) {
+export function Meal({ data, toAdmin, image, ...rest }) {
     const [isClicked, setIsClicked] = useState(false);
     const [amount, setAmount] = useState(0);
 
@@ -57,7 +57,7 @@ export function Meal({ data, toAdmin, ...rest }) {
             >
                 <button type="button">{toAdmin ? <LuPencil onClick={handleClickToMeal}/> : <LuHeart style={{ fill: isClicked ? 'red' : '', color: isClicked ? 'red' : ''}}/>}</button>
             </motion.div>
-            <img src={mealImage} alt="" />
+            <img src={data.url} alt="Imagem da refeição" />
             <MealTitle>
                 <h2>{data?.title}</h2>
                 <LuChevronRight />
