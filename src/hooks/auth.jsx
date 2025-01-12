@@ -13,6 +13,10 @@ function AuthProvider({ children }) {
         return storedCount > 0 ? storedCount : 0;
     });
 
+    const [dishImage, setDishImage] = useState([]);
+    const [dessertImage, setDessertImage] = useState([]);
+    const [drinkImage, setDrinkImage] = useState([]);
+
     
     async function signIn(email, password) {
         try {
@@ -47,21 +51,41 @@ function AuthProvider({ children }) {
         return count
     };
 
-    async function updateImage({ type, file, id }) {
+    function setImage({ data, fileUrl}) {
+        switch (data.type) {
+            case "dish":
+                setDishImage(prevUrl => [fileUrl, ...prevUrl]);
+                break;
+            case "dessert":
+                setDessertImage(prevUrl => [fileUrl, ...prevUrl]);
+                break;
+            case "drink":
+                setDrinkImage(prevUrl => [fileUrl, ...prevUrl]);
+                break;
+        };
+    };
+
+    async function updateMeal({ category, mealData, file, url }) {
         try {
+            const { data } = await api.post(`/${category}`, mealData);
+    
+            const mealId = data.mealId[0];
+    
             const fileForm = new FormData();
             fileForm.append('file', file);
-
-            await api.patch(`/${type}/file/${id}`, fileForm);
-            console.log('imagem atualizada com sucesso');
+    
+            await api.patch(`/${category}/file/${mealId}`, fileForm); 
+            
+            setImage({ data: mealData, fileUrl: url});
         } catch (error) {
             if(error.message) {
                 showToasts.error(error.response.data.message);
             } else {
-                showToasts.error("Erro ao adicionar imagem");
+                showToasts.error("Não foi possível criar um prato");
                 console.error(error);
             }
-        }
+        };
+        
     };
     
     useEffect(() => {
@@ -83,7 +107,17 @@ function AuthProvider({ children }) {
     }, [count]);
 
     return (
-        <AuthContext.Provider value={{ userData, count, signIn, signOut, userRequests, updateImage }}>
+        <AuthContext.Provider value={{ 
+            userData, 
+            count,
+            dishImage,
+            dessertImage,
+            drinkImage, 
+            signIn, 
+            signOut, 
+            userRequests,
+            updateMeal,
+        }}>
             {children}
         </AuthContext.Provider>
     );
