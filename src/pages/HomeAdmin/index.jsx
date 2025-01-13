@@ -14,7 +14,12 @@ import { LuChevronRight, LuChevronLeft } from "react-icons/lu";
 
 import { useEffect, useRef, useState } from "react";
 
+import { useAuth } from "../../hooks/auth";
+
 export function HomeAdmin() {
+    const { dishImage, dessertImage, drinkImage } = useAuth();
+
+    
     const [dishData, setDishData] = useState([]);
     const [dessertData, setDessertData] = useState([]);
     const [drinkData, setDrinkData] = useState([]);
@@ -48,7 +53,11 @@ export function HomeAdmin() {
         async function fetchDishData() {
             try {
                 const response = await api.get(`/dish`);
-                setDishData(response.data);
+                const dishWithImages = response.data.map((item, index) => ({
+                    ...item,
+                    image: dishImage[index]
+                }));
+                setDishData(dishWithImages);
             } catch (error) {
                 if(error.message) {
                     showToasts.error(error.response.data.message);
@@ -61,11 +70,16 @@ export function HomeAdmin() {
         fetchDishData();
     }, []);
 
+
     useEffect(() => {
         async function fetchDessertData() {
             try {
                 const response = await api.get('/dessert');
-                setDessertData(response.data);
+                const dessertWithImages = response.data.map((item, index) => ({
+                    ...item,
+                    image: dessertImage[index],
+                }))
+                setDessertData(dessertWithImages);
             } catch (error) {
                 if(error.message) {
                     showToasts.error(error.response.data.message);
@@ -82,7 +96,11 @@ export function HomeAdmin() {
         async function fetchDrinkData() {
             try {
                 const response = await api.get('/drink');
-                setDrinkData(response.data);
+                const drinkWithImages = response.data.map((item, index) => ({
+                    ...item,
+                    image: drinkImage[index]
+                }));
+                setDrinkData(drinkWithImages);
 
             } catch (error) {
                 if(error.message) {
@@ -95,6 +113,7 @@ export function HomeAdmin() {
 
         fetchDrinkData();
     }, []);
+
     return (
         <Container>
             <Header toAdmin />
@@ -118,6 +137,7 @@ export function HomeAdmin() {
                                         <Meal 
                                             key={String(item.id)}
                                             data={item}
+                                            image={item.image}
                                             toAdmin 
                                         />
                                     ))
@@ -135,6 +155,7 @@ export function HomeAdmin() {
                                         <Meal 
                                             key={String(item.id)}
                                             data={item}
+                                            image={item.image}
                                             toAdmin
                                         />
                                     ))
@@ -152,6 +173,7 @@ export function HomeAdmin() {
                                         <Meal 
                                             key={String(item.id)}
                                             data={item}
+                                            image={item.image}
                                             toAdmin
                                         />
                                     ))
