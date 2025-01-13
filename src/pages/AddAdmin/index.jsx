@@ -16,12 +16,10 @@ import { useNavigate } from "react-router-dom";
 
 import { showToasts } from "../../utils/toasts";
 
-import { api } from "../../services/api";
-
 import { useAuth } from "../../hooks/auth";
 
 export function AddAdmin() {
-    const { updateImage } = useAuth();
+    const { updateMeal } = useAuth();
     
     const [title, setTitle] = useState("");
     const [price, setPrice] = useState(0);
@@ -102,17 +100,16 @@ export function AddAdmin() {
 
         if(passedChecker) {
             try {
-                const { data } = await api.post(`/${selectedCategory}`, {
+                const data = {
                     title,
                     description,
                     price,
                     ingredients,
-                });
+                    type: selectedCategory,
+                };
 
-                const mealId = data.id[0];
+                updateMeal({ category: selectedCategory, mealData: data, file: imageFile, url: imageUrl });
                 
-                updateImage({ type: selectedCategory, id: mealId, file: imageFile })
-
                 showToasts.success("Prato adicionado com sucesso!");
                 navigate("/");
             } catch (error) {
