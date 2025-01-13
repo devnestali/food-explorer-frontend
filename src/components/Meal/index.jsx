@@ -2,8 +2,6 @@ import { motion } from "motion/react";
 
 import { Container, MealTitle, Amount, Buttons } from "./styles";
 
-import mealImage from "../../assets/mealphoto.svg";
-
 import { LuChevronRight, LuMinus, LuPlus, LuHeart, LuPencil } from "react-icons/lu";
 
 import { Button } from "../Button";
@@ -57,7 +55,7 @@ export function Meal({ data, toAdmin, image, ...rest }) {
             >
                 <button type="button">{toAdmin ? <LuPencil onClick={handleClickToMeal}/> : <LuHeart style={{ fill: isClicked ? 'red' : '', color: isClicked ? 'red' : ''}}/>}</button>
             </motion.div>
-            <img src={data.url} alt="Imagem da refeição" />
+            <img src={image} alt="Imagem da refeição" />
             <MealTitle>
                 <h2>{data?.title}</h2>
                 <LuChevronRight />

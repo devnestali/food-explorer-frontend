@@ -18,6 +18,8 @@ import { showToasts } from "../../utils/toasts";
 import { useAuth } from "../../hooks/auth";
 
 export function Home() {
+    const { dishImage, dessertImage, drinkImage } = useAuth();
+    
     const [dishData, setDishData] = useState([]);
     const [dessertData, setDessertData] = useState([]);
     const [drinkData, setDrinkData] = useState([]);
@@ -52,7 +54,11 @@ export function Home() {
         async function fetchDishData() {
             try {
                 const response = await api.get(`/dish?title=${search}`);
-                setDishData(response.data);
+                const dishWithImage = response.data.map((item, index) => ({
+                    ...item,
+                    image: dishImage[index]
+                }))
+                setDishData(dishWithImage);
             } catch (error) {
                 if(error.message) {
                     showToasts.error(error.response.data.message);
@@ -70,7 +76,11 @@ export function Home() {
         async function fetchDessertData() {
             try {
                 const response = await api.get(`/dessert?title=${search}`);
-                setDessertData(response.data);
+                const dessertWithImage = response.data.map((item, index) => ({
+                    ...item,
+                    image: dessertImage[index]
+                }));
+                setDessertData(dessertWithImage);
             } catch (error) {
                 if(error.message) {
                     showToasts.error(error.response.data.message);
@@ -87,7 +97,11 @@ export function Home() {
         async function fetchDrinkData() {
             try {
                 const response = await api.get(`/drink?title=${search}`);
-                setDrinkData(response.data);
+                const drinkWithImage = response.data.map((item, index) => ({
+                    ...item,
+                    image: drinkImage[index]
+                }));
+                setDrinkData(drinkWithImage);
                 
             } catch (error) {
                 if(error.message) {
@@ -133,6 +147,7 @@ export function Home() {
                                     <Meal 
                                         key={String(item.id)}
                                         data={item}
+                                        image={item.image}
                                     />
                                 ))
                             }
@@ -148,6 +163,7 @@ export function Home() {
                                 dessertData && dessertData.map(item => (
                                     <Meal 
                                         key={String(item.id)}
+                                        image={item.image}
                                         data={item}
                                     />
                                 )) 
@@ -164,6 +180,7 @@ export function Home() {
                                 drinkData && drinkData.map(item => (
                                     <Meal 
                                         key={item.id}
+                                        image={item.image}
                                         data={item}
                                     />
                                 ))
