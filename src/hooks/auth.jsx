@@ -97,7 +97,7 @@ function AuthProvider({ children }) {
             api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
             setUserData(user);
         };
-
+        
         setCount(request);
 
     }, []);

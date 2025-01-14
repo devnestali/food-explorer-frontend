@@ -21,6 +21,8 @@ import { useAuth } from "../../hooks/auth";
 
  
 export function Dish() {
+    const { dishImage, dessertImage, drinkImage } = useAuth();
+    
     const [data, setData] = useState(null); 
     const [amount, setAmount] = useState(1);
     const [price, setPrice] = useState(0);
@@ -46,21 +48,39 @@ export function Dish() {
     };
 
     async function fetchDishData() {
-        const response = await api.get(`/dish/${id}`);
-        setData(response.data);
-        setPrice(response.data.price);
+        const { data } = await api.get(`/dish/${id}`);
+
+        const dishWithImage = {
+            ...data,
+            url: dishImage[0]
+        }
+
+        setData(dishWithImage);
+        setPrice(data.price);
     };
     
     async function fetchDessertData() {
-        const response = await api.get(`/dessert/${id}`);
-        setData(response.data);
-        setPrice(response.data.price);
+        const { data } = await api.get(`/dessert/${id}`);
+
+        const dessertWithImage = {
+            ...data,
+            url: dessertImage[0]
+        }
+
+        setData(dessertWithImage);
+        setPrice(data.price);
     };
     
     async function fetchDrinkData() {
-        const response = await api.get(`/drink/${id}`);
-        setData(response.data);
-        setPrice(response.data.price);
+        const { data } = await api.get(`/drink/${id}`);
+
+        const drinkWithImage  = {
+            ...data,
+            url: drinkImage[0]
+        }
+
+        setData(drinkWithImage);
+        setPrice(data.price);
     };
     
     function handleAmountClickPlus() {
@@ -98,7 +118,7 @@ export function Dish() {
                 <Wrapper>
                     <ButtonText icon={LuChevronLeft} title="voltar" toBack />
                     <InfoMeal>
-                        <img src={MealPhoto} alt="meal" />
+                        <img src={data?.url} alt="meal" />
 
                         <DetailsMeal>
                             <h2>{data?.title}</h2>
