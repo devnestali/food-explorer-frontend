@@ -61,13 +61,14 @@ export const FieldImageInput = styled.div`
     }
 
     > .dishImageInput {
-        flex-grow: 1;
         height: 4.8rem;
+        width: 26rem;
+
         background-color: ${({ theme }) => theme.COLORS.DARK_800};
         border-radius: 0.8rem;
+        text-align: left;
 
         > label {
-            width: 100%;
             height: 4.8rem;
 
             display: flex;
@@ -83,13 +84,21 @@ export const FieldImageInput = styled.div`
             }
 
             > .text-container {
+                width: 100%;
+                
                 display: flex;
                 align-items: center;
                 gap: .8rem;
 
                 > h3 {
+                    width: 100%;
+                    
                     font-weight: 500;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
                 }
+
 
                 > svg {
                     width: 2.4rem;

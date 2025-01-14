@@ -202,7 +202,7 @@ export function EditAdmin() {
                                         <input type="file" id="inputImage" accept="image/*" />
                                         <div className="text-container">
                                             <LuArrowUpFromLine /> 
-                                            <h3>Selecionar imagem</h3>
+                                            <h3>{data?.image}</h3>
                                         </div>
                                     </label>
                                 </div>

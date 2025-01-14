@@ -15,7 +15,11 @@ import MealPhoto from "../../assets/mealphoto.svg";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+import { useAuth } from "../../hooks/auth";
+
 export function DishAdmin() {
+    const { dishImage, dessertImage, drinkImage } = useAuth();
+    
     const [data, setData] = useState(null);
     const navigate = useNavigate()
 
@@ -29,18 +33,36 @@ export function DishAdmin() {
     };
 
     async function fetchDishData() {
-        const response = await api.get(`/dish/${id}`);
-        setData(response.data);
+        const { data } = await api.get(`/dish/${id}`);
+
+        const dishData = {
+            ...data,
+            url: dishImage[0]
+        }
+
+        setData(dishData);
     };
 
     async function fetchDessertData() {
-        const response = await api.get(`/dessert/${id}`);
-        setData(response.data);
+        const { data } = await api.get(`/dessert/${id}`);
+        
+        const dessertData = {
+            ...data,
+            url: dessertImage[0]
+        }
+
+        setData(dessertData);
     };
 
     async function fetchDrinkData() {
-        const response = await api.get(`/drink/${id}`);
-        setData(response.data);
+        const { data } = await api.get(`/drink/${id}`);
+        
+        const drinkData = {
+            ...data,
+            url: drinkImage[0]
+        }
+        
+        setData(drinkData);
     };
 
     useEffect(() => {
@@ -67,7 +89,7 @@ export function DishAdmin() {
                     <Wrapper>
                         <ButtonText icon={LuChevronLeft} title="voltar" toBack />
                         <InfoMeal>
-                            <img src={MealPhoto} alt="meal" />
+                            <img src={data?.url} alt="meal" />
 
                             <DetailsMeal>
                                 <h2>{data?.title}</h2>
