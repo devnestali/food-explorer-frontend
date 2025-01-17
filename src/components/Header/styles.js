@@ -17,10 +17,18 @@ export const Container = styled.div`
 
     background-color: ${({ theme }) => theme.COLORS.DARK_600};
 
+    @media (max-width: 1178px) {
+        gap: 12rem;
+    }
+
     .logo {
         display: inline-flex;
         align-items: center;
         gap: 1rem;
+
+        @media (max-width: 1178px) {
+            order: 2;
+        }
 
         .text-container {
             position: relative;
@@ -29,6 +37,7 @@ export const Container = styled.div`
             a {
                 font-size: 2.4rem;
                 font-weight: bold;
+                
             }
 
             p {
@@ -41,43 +50,40 @@ export const Container = styled.div`
             }
         }
     }
+
+    .mobile-menu {
+        display: none;
+
+        @media (max-width: 1178px) {
+            order: 1;
+            
+            display: flex;
+            justify-content: center;
+
+            color: ${({ theme }) => theme.COLORS.LIGHT_100};
+            background-color: transparent;
+
+            border: none;
+            outline: none;
+
+            > svg {
+                width: 4rem;
+                height: 4rem;
+            }
+
+        }
+    }
+
 `;
 
 export const InputSearch = styled.div`
-    min-width: 58rem;
-
     display: flex;
     align-items: center;
-    gap: 1.4rem;
+    justify-content: center;
 
-    position: relative;
-
-    > svg {
-        height: 2.4rem;
-        width: 2.4rem;
-
-        position: absolute;
-        left: 28%;
-        z-index: 1;
-        color: ${({ theme }) => theme.COLORS.LIGHT_400};
-    }
-
-    > input {
-        width: 100%;
-        height: 4.8rem;
-
-        background-color: ${({ theme }) => theme.COLORS.DARK_900};
-
-        border: none;
-        outline: none;
-        border-radius: 0.5rem;
-        font-size: 1.6rem;
-
-        padding: 1.6rem 0 1.6rem 20rem;
-    }
-
-    > input::placeholder {
-        font-size: 1.6rem;
-        color: ${({ theme }) => theme.COLORS.LIGHT_500};
+    @media (max-width: 1178px) {
+        .mobile-search-container {
+            display: block;
+        }
     }
 `;

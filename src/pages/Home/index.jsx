@@ -5,7 +5,7 @@ import { Wrapper } from "../../components/Wrapper";
 import { Meal } from "../../components/Meal";
 import { Footer } from "../../components/Footer";
 
-import { LuChevronLeft, LuChevronRight, LuSearch } from "react-icons/lu";
+import { LuChevronLeft, LuChevronRight, LuMenu, LuSearch } from "react-icons/lu";
 
 import mainImage from '../../assets/mainImage.png';
 
@@ -118,13 +118,24 @@ export function Home() {
     return (
         <Container>
             <Header>
-                <LuSearch />
-                <input 
-                    type="text" 
-                    placeholder="Busque por refeição, sobremesa e bebida"
-                    onChange={e => setSearch(e.target.value)}
-                    value={search}
-                />
+                <button 
+                    type="button"
+                    className="mobile-menu"
+                >
+                    <LuMenu />
+                </button>
+                
+                <div className="search-container">
+                    <LuSearch />
+                    <input 
+                        type="text"
+                        className="search"
+                        placeholder="Busque por refeição, sobremesa e bebida"
+                        onChange={e => setSearch(e.target.value)}
+                        value={search}
+                    />
+                </div>
+
             </Header>
 
             <main>

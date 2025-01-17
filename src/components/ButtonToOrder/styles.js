@@ -23,4 +23,11 @@ export const Container = styled.button`
         height: 2.2rem;
         width: 2.2rem;
     }
+
+    @media (max-width: 1178px) {
+        order: 3;
+
+        width: 18rem
+    }
+    
 `;

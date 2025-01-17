@@ -10,6 +10,49 @@ export const Container = styled.div`
     'header'
     'container';
 
+    .search-container {
+        min-width: 58rem;
+
+        display: flex;
+        align-items: center;
+        gap: 1.4rem;
+
+        position: relative;
+
+        @media (max-width: 1178px) {
+            display: none;
+        }
+        
+            > svg {
+                height: 2.4rem;
+                width: 2.4rem;
+
+                position: absolute;
+                left: 28%;
+                z-index: 1;
+                color: ${({ theme }) => theme.COLORS.LIGHT_400};
+            }
+
+            > input {
+                width: 100%;
+                height: 4.8rem;
+
+                background-color: ${({ theme }) => theme.COLORS.DARK_900};
+
+                border: none;
+                outline: none;
+                border-radius: 0.5rem;
+                font-size: 1.6rem;
+
+                padding: 1.6rem 0 1.6rem 20rem;
+            }
+
+            > input::placeholder {
+                font-size: 1.6rem;
+                color: ${({ theme }) => theme.COLORS.LIGHT_500};
+            }
+    }
+
     > main {
         grid-area: container;
         width: 100%;

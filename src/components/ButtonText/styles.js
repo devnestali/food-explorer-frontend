@@ -35,4 +35,8 @@ export const Container = styled(Link)`
         width: 2.2rem;
         height: 2.2rem;
     }
+
+    @media (max-width: 1178px) {
+        display: none;
+    }
 `;
