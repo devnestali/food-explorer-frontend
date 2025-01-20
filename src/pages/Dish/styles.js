@@ -27,7 +27,12 @@ export const Container = styled.div`
                 display: flex;
                 gap: 1.2rem;
             }
+            
+            .mobile-button {
+                display: inline-flex;
+            }
         }
+
     }
 `;
 
@@ -45,6 +50,10 @@ export const InfoMeal = styled.div`
         
         object-fit: cover;
         opacity: 0.9;
+    }
+
+    @media (max-width: 1178px) {
+        flex-direction: column;
     }
 `;
 
@@ -67,6 +76,10 @@ export const DetailsMeal = styled.div`
         line-height: 140%;
 
         text-overflow: ellipsis;
+    }
+
+    @media (max-width: 1178px) {
+        align-items: center;
     }
 `;
 
@@ -99,6 +112,18 @@ export const Buttons = styled.div`
 
         > span {
             font-size: 2rem;
+        }
+    }
+
+    @media (max-width: 1178px) {
+        width: 35rem;
+        
+        .amount {
+            gap: 2rem;
+
+            > span {
+                font-size: 2.7rem;
+            }
         }
     }
 `;

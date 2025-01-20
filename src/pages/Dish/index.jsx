@@ -116,7 +116,12 @@ export function Dish() {
 
             <main>
                 <Wrapper>
-                    <ButtonText icon={LuChevronLeft} title="voltar" toBack />
+                    <ButtonText 
+                        className="mobile-button"
+                        icon={LuChevronLeft} 
+                        title="voltar" 
+                        toBack
+                    />
                     <InfoMeal>
                         <img src={data?.url} alt="meal" />
 
