@@ -58,4 +58,8 @@ export const Container = styled.footer`
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
     }
 
+    @media (max-width: 1178px) {
+        width: 100%;
+    }
+
 `;

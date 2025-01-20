@@ -57,6 +57,18 @@ export const Container = styled.div`
         line-height: 160%;
         color: ${({ theme }) => theme.COLORS.CAKE_200};
     }
+
+    @media (max-width: 1178px) {
+        width: 25rem;
+        height: 38rem;
+
+        padding: 1.2rem 1.2rem 2.3rem;
+
+        > img {
+            width: 14rem;
+            height: 14rem;
+        }
+    } 
 `;
 
 export const MealTitle = styled.div`

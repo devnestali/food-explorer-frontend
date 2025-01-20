@@ -70,6 +70,13 @@ export const Container = styled.div`
                 margin: 6.2rem 0 2rem;
             }
         }
+
+        @media (max-width: 1178px) {
+            > .wrapper {
+                padding-right: 5rem;
+                padding-left: 5rem;
+            }
+        }
     }
 `;
 
@@ -99,6 +106,21 @@ export const MainHeader = styled.div`
             font-weight: 500;
             line-height: 140%;
             letter-spacing: .1rem;
+        }
+    }
+
+    @media (max-width: 1178px) {
+        padding: 0 2rem;
+        
+        > img {
+            width: 54rem;
+            top: -8.8rem;
+            left: -7rem;
+        }
+
+        > .mainHeaderTitle h2 {
+            line-height: 100%;
+            margin-bottom: 2rem;
         }
     }
 `;

@@ -26,8 +26,6 @@ export const Container = styled.button`
 
     @media (max-width: 1178px) {
         order: 3;
-
-        width: 18rem
+        width: 18rem;
     }
-    
 `;
