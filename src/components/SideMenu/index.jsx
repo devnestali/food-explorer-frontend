@@ -1,15 +1,30 @@
 import { Container, Header } from "./styles";
 
 import { Wrapper } from "../Wrapper";
-
-import { LuX, LuSearch } from "react-icons/lu";
 import { Footer } from "../Footer";
 
-export function SideMenu() {
+import { LuX, LuSearch } from "react-icons/lu";
+
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/auth";
+
+export function SideMenu({ toAdmin}) {
+    const { signOut } = useAuth();
+    const navigate = useNavigate();
+    
+    function handleCloseEvent() {
+        navigate('/');
+    };
+
+    function handleSignOutEvent() {
+        signOut();
+        navigate('/');
+    }
+    
     return (
         <Container>
             <Header>
-                <span><LuX /></span>
+                <span onClick={handleCloseEvent}><LuX /></span>
                 <h2>Menu</h2>
             </Header>
 
@@ -22,7 +37,7 @@ export function SideMenu() {
                         />
                     </div>
 
-                    <button type="button">Sair</button>
+                    <button type="button" onClick={() => handleSignOutEvent()}>Sair</button>
                 </Wrapper>
             
                 <Footer />

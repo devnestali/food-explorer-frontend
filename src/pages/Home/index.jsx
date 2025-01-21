@@ -16,6 +16,9 @@ import { api } from "../../services/api";
 import { showToasts } from "../../utils/toasts";
 
 import { useAuth } from "../../hooks/auth";
+import { SideMenu } from "../../components/SideMenu";
+
+import { useNavigate } from "react-router-dom";
 
 export function Home() {
     const { dishImage, dessertImage, drinkImage } = useAuth();
@@ -25,8 +28,11 @@ export function Home() {
     const [drinkData, setDrinkData] = useState([]);
     
     const [search, setSearch] = useState("");
+    const [menuIsOpen, setMenuIsOpen] = useState(false);
 
     const carouselRef = useRef([]);
+
+    const navigate = useNavigate()
     
     function scrollLeft (index, e) {
         e.preventDefault();
@@ -49,6 +55,10 @@ export function Home() {
             })
         };
     };
+
+    function handleMenuMobile() {
+        navigate('/sidemenu')
+    }
 
     useEffect(() => {
         async function fetchDishData() {
@@ -121,6 +131,7 @@ export function Home() {
                 <button 
                     type="button"
                     className="mobile-menu"
+                    onClick={() => handleMenuMobile()}
                 >
                     <LuMenu />
                 </button>

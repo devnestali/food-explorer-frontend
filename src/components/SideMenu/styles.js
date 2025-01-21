@@ -24,6 +24,7 @@ export const Container = styled.div`
 
             .search-container {
                 position: relative;
+                
                 > svg {
                     height: 2.4rem;
                     width: 2.4rem;
@@ -95,6 +96,12 @@ export const Header = styled.header`
         
         width: 1.8rem;
         height: 1.8rem;
+
+        cursor: pointer;
+
+        > svg {
+            font-size: 2rem;
+        }
     }
 
     > h2 {
