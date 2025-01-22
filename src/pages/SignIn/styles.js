@@ -25,6 +25,11 @@ export const Container = styled.div`
         }
     }
 
+    @media (max-width: 1178px) {
+        > div {
+            display: none;
+        }
+    }
 `;
 
 export const Form = styled.form`

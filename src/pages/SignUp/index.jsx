@@ -69,7 +69,7 @@ export function SignUp() {
                         onChange={e => setPassword(e.target.value)}
                     />
                     <Button title="Criar conta" onClick={handleSignUp}/>
-                    <ButtonText title="Já tenho uma conta" />
+                    <ButtonText title="Já tenho uma conta" className="mobile-button" />
                 </Form>
         </Container>
     )

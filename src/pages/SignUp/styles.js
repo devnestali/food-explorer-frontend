@@ -25,6 +25,11 @@ export const Container = styled.div`
         }
     }
 
+    @media (max-width: 1178px) {
+        > div {
+            display: none;
+        }
+    }
 `;
 
 export const Form = styled.form`
@@ -38,5 +43,9 @@ export const Form = styled.form`
     > h1 {
         text-align: center;
         font-weight: 500;
+    }
+
+    .mobile-button {
+        display: inline-flex;
     }
 `;
