@@ -27,6 +27,13 @@ export const Container = styled.div`
                 margin: 6.2rem 0 2rem;
             }
         }
+
+        @media (max-width: 1178px) {
+            > .wrapper {
+                padding-right: 5rem;
+                padding-left: 5rem;
+            }
+        }
     }
 `;
 

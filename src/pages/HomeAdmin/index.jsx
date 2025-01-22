@@ -15,16 +15,22 @@ import { LuChevronRight, LuChevronLeft, LuMenu } from "react-icons/lu";
 import { useEffect, useRef, useState } from "react";
 
 import { useAuth } from "../../hooks/auth";
+import { useNavigate } from "react-router-dom";
 
 export function HomeAdmin() {
     const { dishImage, dessertImage, drinkImage } = useAuth();
 
-    
+    const navigate = useNavigate();
+
     const [dishData, setDishData] = useState([]);
     const [dessertData, setDessertData] = useState([]);
     const [drinkData, setDrinkData] = useState([]);
 
     const carouselRef = useRef([]);
+
+    function handleMenuMobile() {
+        navigate('/sidemenu')
+    }
     
     function scrollLeft(index, e) {
         e.preventDefault();
@@ -122,6 +128,7 @@ export function HomeAdmin() {
                 <button 
                     type="button"
                     className="mobile-menu"
+                    onClick={handleMenuMobile}
                 >
                     <LuMenu />
                 </button>

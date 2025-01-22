@@ -23,34 +23,34 @@ export const Container = styled.div`
             display: none;
         }
         
-            > svg {
-                height: 2.4rem;
-                width: 2.4rem;
+        > svg {
+            height: 2.4rem;
+            width: 2.4rem;
 
-                position: absolute;
-                left: 28%;
-                z-index: 1;
-                color: ${({ theme }) => theme.COLORS.LIGHT_400};
-            }
+            position: absolute;
+            left: 28%;
+            z-index: 1;
+            color: ${({ theme }) => theme.COLORS.LIGHT_400};
+        }
 
-            > input {
-                width: 100%;
-                height: 4.8rem;
+        > input {
+            width: 100%;
+            height: 4.8rem;
 
-                background-color: ${({ theme }) => theme.COLORS.DARK_900};
+            background-color: ${({ theme }) => theme.COLORS.DARK_900};
 
-                border: none;
-                outline: none;
-                border-radius: 0.5rem;
-                font-size: 1.6rem;
+            border: none;
+            outline: none;
+            border-radius: 0.5rem;
+            font-size: 1.6rem;
 
-                padding: 1.6rem 0 1.6rem 20rem;
-            }
+            padding: 1.6rem 0 1.6rem 20rem;
+        }
 
-            > input::placeholder {
-                font-size: 1.6rem;
-                color: ${({ theme }) => theme.COLORS.LIGHT_500};
-            }
+        > input::placeholder {
+            font-size: 1.6rem;
+            color: ${({ theme }) => theme.COLORS.LIGHT_500};
+        }
     }
 
     > main {

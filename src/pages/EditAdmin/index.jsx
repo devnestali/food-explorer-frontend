@@ -191,7 +191,12 @@ export function EditAdmin() {
 
             <main>
                 <Wrapper>
-                    <ButtonText icon={LuArrowLeft} title="voltar" toBack />
+                    <ButtonText 
+                        icon={LuArrowLeft} 
+                        title="voltar" 
+                        toBack 
+                        className="mobile-button" 
+                    />
                     <h2>Editar prato</h2>
                     <Form>
                         <HeaderInputs>

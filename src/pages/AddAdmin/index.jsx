@@ -130,8 +130,9 @@ export function AddAdmin() {
 
             <main>
                 <Wrapper>
-                    <ButtonText icon={LuArrowLeft} title="voltar" toBack />
+                    <ButtonText icon={LuArrowLeft} title="voltar" toBack className="mobile-button" />
                     <h2>Adicionar prato</h2>
+                    
                     <Form>
                         <HeaderInputs>
                             <FieldImageInput>

@@ -30,8 +30,18 @@ export const Container = styled.div`
                 font-size: 3.2rem;
                 line-height: 140%;
             }
+
+            .mobile-button {
+                display: inline-flex;
+            }
         }
 
+        @media (max-width: 1178px) {
+            .wrapper h2 {
+                text-align: center;
+                font-size: 4rem;
+            }
+        }
     }
 `;
 
@@ -48,6 +58,16 @@ export const Form = styled.form`
         display: inline-flex;
         align-self: flex-end;
     }
+
+    @media (max-width: 1178px) {
+        > .buttons {
+            width: 100%;
+            
+            padding-left: 5rem;
+            padding-right: 5rem;
+        }
+    }
+
 `;
 
 export const FieldImageInput = styled.div`
@@ -64,7 +84,6 @@ export const FieldImageInput = styled.div`
 
         background-color: ${({ theme }) => theme.COLORS.DARK_800};
         border-radius: 0.8rem;
-        text-align: left;
 
         > label {
             height: 4.8rem;
@@ -105,7 +124,12 @@ export const FieldImageInput = styled.div`
             }
         }
 
+        
+        @media (max-width: 1178px) {
+            width: 100%;
+        }
     }
+
 `;
 
 export const HeaderInputs = styled.div`
@@ -115,6 +139,12 @@ export const HeaderInputs = styled.div`
 
     > .inputComponent {
         margin-top: 0;
+    }
+
+    @media (max-width: 1178px) {
+        display: grid;
+        padding-left: 5rem;
+        padding-right: 5rem;
     }
 `;
 
@@ -195,6 +225,11 @@ export const BodyInputs = styled.div`
         margin-top: 0;
     }
 
-
+    @media (max-width: 1178px) {
+        flex-direction: column;
+        
+        padding-right: 5rem;
+        padding-left: 5rem;
+    }
 
 `;

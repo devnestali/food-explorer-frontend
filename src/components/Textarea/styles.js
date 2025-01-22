@@ -30,4 +30,9 @@ export const Container = styled.div`
 
         color: ${({ theme }) => theme.COLORS.LIGHT_500};
     }
+
+    @media (max-width: 1178px) {
+        padding-left: 5rem;
+        padding-right: 5rem;
+    }
 `;
