@@ -1,4 +1,4 @@
-import { styled } from 'styled-components'
+import { styled } from 'styled-components';
 
 export const Container = styled.div`
     width: 100%;
@@ -27,7 +27,12 @@ export const Container = styled.div`
                 display: flex;
                 gap: 1.2rem;
             }
+            
+            .mobile-button {
+                display: inline-flex;
+            }
         }
+
     }
 `;
 
@@ -45,6 +50,10 @@ export const InfoMeal = styled.div`
         
         object-fit: cover;
         opacity: 0.9;
+    }
+
+    @media (max-width: 1178px) {
+        flex-direction: column;
     }
 `;
 
@@ -68,14 +77,53 @@ export const DetailsMeal = styled.div`
 
         text-overflow: ellipsis;
     }
+
+    @media (max-width: 1178px) {
+        align-items: center;
+    }
 `;
 
 export const Buttons = styled.div`
-    width: 13.1rem;
+    width: 29.4rem;
                 
     display: flex;
     align-items: center;
     gap: 3.3rem;
 
     margin-top: 2.4rem;
+
+    .amount {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        > button {
+            background: transparent;
+
+            border: none;
+            outline: none;
+            
+            
+            > svg {
+                width: 2.4rem;
+                height: 2.4rem;
+            }
+        }
+
+        > span {
+            font-size: 2rem;
+        }
+    }
+
+    @media (max-width: 1178px) {
+        width: 35rem;
+        
+        .amount {
+            gap: 2rem;
+
+            > span {
+                font-size: 2.7rem;
+            }
+        }
+    }
 `;

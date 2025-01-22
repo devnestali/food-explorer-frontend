@@ -87,7 +87,7 @@ export function DishAdmin() {
 
                 <main>
                     <Wrapper>
-                        <ButtonText icon={LuChevronLeft} title="voltar" toBack />
+                        <ButtonText icon={LuChevronLeft} title="voltar" toBack className="mobile-button" />
                         <InfoMeal>
                             <img src={data?.url} alt="meal" />
 
