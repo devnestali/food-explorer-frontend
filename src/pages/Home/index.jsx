@@ -28,7 +28,6 @@ export function Home() {
     const [drinkData, setDrinkData] = useState([]);
     
     const [search, setSearch] = useState("");
-    const [menuIsOpen, setMenuIsOpen] = useState(false);
 
     const carouselRef = useRef([]);
 
@@ -131,7 +130,7 @@ export function Home() {
                 <button 
                     type="button"
                     className="mobile-menu"
-                    onClick={() => handleMenuMobile()}
+                    onClick={handleMenuMobile}
                 >
                     <LuMenu />
                 </button>

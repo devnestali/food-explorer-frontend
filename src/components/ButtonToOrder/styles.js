@@ -24,8 +24,13 @@ export const Container = styled.button`
         width: 2.2rem;
     }
 
+    
     @media (max-width: 1178px) {
         order: 3;
         width: 18rem;
+        
+        &[data-toAdminMobile="true"] {
+            display: none;
+        }
     }
 `;

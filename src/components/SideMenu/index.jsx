@@ -37,7 +37,7 @@ export function SideMenu({ toAdmin}) {
                         />
                     </div>
 
-                    <button type="button" onClick={() => handleSignOutEvent()}>Sair</button>
+                    <button type="button" onClick={handleSignOutEvent}>Sair</button>
                 </Wrapper>
             
                 <Footer />

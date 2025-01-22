@@ -40,7 +40,9 @@ export function Header({ toAdmin, children }) {
             <ButtonToOrder icon={!toAdmin && LuClipboardList} 
                            title={toAdmin ? "Novo Prato" : `Pedidos (${count})`} 
                            onClick={toAdmin ? handleClickToAddAdmin : ""}
+                           toAdminMobile
             />
+            
             <ButtonText icon={LuLogOut} toBack onClick={handleSignOut} />
         </Container>
     )

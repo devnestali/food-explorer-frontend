@@ -10,7 +10,7 @@ import { showToasts } from "../../utils/toasts";
 
 import mainImage from '../../assets/mainImage.png';
 
-import { LuChevronRight, LuChevronLeft } from "react-icons/lu";
+import { LuChevronRight, LuChevronLeft, LuMenu } from "react-icons/lu";
 
 import { useEffect, useRef, useState } from "react";
 
@@ -116,7 +116,16 @@ export function HomeAdmin() {
 
     return (
         <Container>
-            <Header toAdmin />
+            <Header 
+                toAdmin
+            >
+                <button 
+                    type="button"
+                    className="mobile-menu"
+                >
+                    <LuMenu />
+                </button>
+            </Header>
 
             <main>
                 <Wrapper>
@@ -128,6 +137,7 @@ export function HomeAdmin() {
                             <p>Sinta o cuidado do preparo com ingredientes selecionados</p>
                         </div>
                     </MainHeader> 
+                    
                     <h2>Refeições</h2>
                     <Carousel>
                         <a href="" onClick={e => scrollRight(0, e)}><LuChevronRight /></a>
