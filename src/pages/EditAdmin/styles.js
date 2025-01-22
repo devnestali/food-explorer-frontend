@@ -53,10 +53,11 @@ export const Form = styled.form`
     gap: 1.6rem;
 
     > .buttons {
-        width: 17.2rem;
+        width: 34rem;
 
-        display: inline-flex;
+        display: flex;
         align-self: flex-end;
+        gap: 3.2rem;
     }
 
     @media (max-width: 1178px) {
