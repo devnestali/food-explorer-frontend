@@ -9,11 +9,11 @@ Food Explorer is a food application where administrators can create, edit and de
 
 ### USER
 
-[UserGif]('./src/assets/userImage.png')
+[UserImage](./src/assets/userImage.png)
 
 ### ADMIN
 
-[AdminGif]('./src/assets/adminImage.png')
+[AdminImage](./src/assets/adminImage.png)
 
 
 ## 📒 FEATURES
