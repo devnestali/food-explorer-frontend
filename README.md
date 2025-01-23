@@ -9,11 +9,11 @@ Food Explorer is a food application where administrators can create, edit and de
 
 ### USER
 
-[UserGif]('./src/assets/Gravação-user.mp4')
+[UserGif]('./src/assets/userImage.png')
 
 ### ADMIN
 
-[AdminGif]('./src/assets/Gravação-admin.mp4')
+[AdminGif]('./src/assets/adminImage.png')
 
 
 ## 📒 FEATURES
@@ -50,6 +50,12 @@ Food Explorer is a food application where administrators can create, edit and de
 * Finally, to run the project with the command bellow in your VSCode integrate terminal: 
 ```bash
     npm run dev
+```
+
+* To acess the admin account and user account easily, use the login and password bellow: 
+```bash
+    user@email.com  123
+    admin@email.com  123
 ```
 
 ## 🚀 License
