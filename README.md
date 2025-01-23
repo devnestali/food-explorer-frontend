@@ -7,7 +7,13 @@ Food Explorer is a food application where administrators can create, edit and de
 
 ## 🤖 PROTOTYPE
 
-Insira um gif ou um link de alguma demonstração
+### USER
+
+[UserGif]('./src/assets/Gravação-user.gif)
+
+### ADMIN
+
+[AdminGif]('./src/assets/Gravação-admin.gif)
 
 
 ## 📒 FEATURES
